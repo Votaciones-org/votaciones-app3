@@ -1,0 +1,85 @@
+
+-- usuarios afk - votos
+-- Insertar Voto y Usuario
+DELIMITER //
+CREATE PROCEDURE procInsertVotoUsuarioafkDDL(
+    IN v_nombre VARCHAR(100),
+    IN v_apellido VARCHAR(100),
+    IN v_cedula VARCHAR(100),
+    IN v_opcion VARCHAR(100),
+    IN v_correo VARCHAR(100),
+    IN v_contrasena VARCHAR(100)
+)
+BEGIN
+    -- Insertar el voto
+    INSERT INTO tbl_votos (vo_nombre, vo_apellido, vo_cedula, vo_opcion) 
+    VALUES (v_nombre, v_apellido, v_cedula, v_opcion);
+    
+    -- Insertar el usuario
+    INSERT INTO tbl_usuarios_afk (af_correo, af_contrasena) 
+    VALUES (v_correo, v_contrasena);
+END//
+DELIMITER ;
+
+-- Actualizar Voto y Usuario
+DELIMITER //
+CREATE PROCEDURE procUpdateVotoUsuarioafkDDL(
+    IN v_voto_id INT,
+    IN v_nombre VARCHAR(100),
+    IN v_apellido VARCHAR(100),
+    IN v_cedula VARCHAR(100),
+    IN v_opcion VARCHAR(100),
+    IN v_usuario_id INT,
+    IN v_correo VARCHAR(100),
+    IN v_contrasena VARCHAR(100)
+)
+BEGIN
+    -- Actualizar el voto
+    UPDATE tbl_votos
+    SET vo_nombre = v_nombre,
+        vo_apellido = v_apellido,
+        vo_cedula = v_cedula,
+        vo_opcion = v_opcion
+    WHERE vo_id = v_voto_id;
+
+    -- Actualizar el usuario
+    UPDATE tbl_usuarios_afk
+    SET af_correo = v_correo,
+        af_contrasena = v_contrasena
+    WHERE af_id = v_usuario_id;
+END//
+DELIMITER ;
+
+-- Mostrar Votos y Usuarios
+DELIMITER //
+CREATE PROCEDURE procSelectVotosUsuariosafkDDL()
+BEGIN
+    SELECT 
+        v.vo_id, 
+        v.vo_nombre, 
+        v.vo_apellido, 
+        v.vo_cedula, 
+        v.vo_opcion, 
+        v.vo_fecha_envio,
+        u.af_id,
+        u.af_correo,
+        u.af_fechaCierre
+    FROM tbl_votos v
+    LEFT JOIN tbl_usuarios_afk u ON v.vo_id = u.af_id; -- Adjust join condition as necessary
+END//
+DELIMITER ;
+
+-- Eliminar Voto y Usuario
+DELIMITER //
+CREATE PROCEDURE procDeleteVotoUsuarioafkDDL(
+    IN v_voto_id INT,
+    IN v_usuario_id INT
+)
+BEGIN
+    -- Eliminar el voto
+    DELETE FROM tbl_votos WHERE vo_id = v_voto_id;
+
+    -- Eliminar el usuario
+    DELETE FROM tbl_usuarios_afk WHERE af_id = v_usuario_id;
+END//
+DELIMITER ;
