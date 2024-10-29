@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
@@ -38,6 +39,41 @@ namespace Data
         public void closeConnection()
         {
             _connection.Close();// Cierra la conexión.
+        }
+
+        public DataSet showPartidos()
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool savePartido(string nombrePartido, string descripcion)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool updatePartido(int id, string nombrePartido, string descripcion)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool deletePartido(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public DataSet showVotes()
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool saveVote(string nombre, string apellido, string cedula, string opcion)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool updateVote(int id, string nombre, string apellido, string cedula, string opcion)
+        {
+            throw new NotImplementedException();
         }
     }
 }
