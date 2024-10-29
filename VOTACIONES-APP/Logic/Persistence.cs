@@ -5,42 +5,37 @@ namespace Logic
 {
     internal class Persistence
     {
-        internal bool deleteCandidatoEliminado(int id)
+        internal bool deletePartido(int id)
         {
             throw new NotImplementedException();
         }
 
-        internal bool deleteEstadoVida(int id)
+        internal bool savePartido(string nombrePartido, string descripcion)
         {
             throw new NotImplementedException();
         }
 
-        internal bool saveCandidatoEliminado(string nombre, string apellido, string partido, string fechaNacimiento, string propuesta)
+        internal bool saveVote(string nombre, string apellido, string cedula, string opcion)
         {
             throw new NotImplementedException();
         }
 
-        internal bool saveEstadoVida(string nombre, string apellido, string cedula, string estado, string fechaDefuncion)
+        internal DataSet showPartidos()
         {
             throw new NotImplementedException();
         }
 
-        internal DataSet showCandidatosEliminados()
+        internal DataSet showVotes()
         {
             throw new NotImplementedException();
         }
 
-        internal DataSet showEstadoVida()
+        internal bool updatePartido(int id, string nombrePartido, string descripcion)
         {
             throw new NotImplementedException();
         }
 
-        internal bool updateCandidatoEliminado(int id, string nombre, string apellido, string partido, string fechaNacimiento, string propuesta)
-        {
-            throw new NotImplementedException();
-        }
-
-        internal bool updateEstadoVida(int id, string nombre, string apellido, string cedula, string estado, string fechaDefuncion)
+        internal bool updateVote(int id, string nombre, string apellido, string cedula, string opcion)
         {
             throw new NotImplementedException();
         }
