@@ -1,0 +1,87 @@
+-- usuarios- votos 
+-- Insertar Voto y Usuario
+DELIMITER //
+CREATE PROCEDURE procInsertVotoUsuarioDDL(
+    IN v_nombre VARCHAR(100),
+    IN v_apellido VARCHAR(100),
+    IN v_cedula VARCHAR(100),
+    IN v_opcion VARCHAR(100),
+    IN v_correo VARCHAR(100),
+    IN v_contrasena VARCHAR(100)
+)
+BEGIN
+    DECLARE v_usuario_id INT;
+
+    -- Insertar el usuario
+    INSERT INTO tbl_usuarios (usu_correo, usu_contrasena) 
+    VALUES (v_correo, v_contrasena);
+    
+    SET v_usuario_id = LAST_INSERT_ID();
+
+    -- Insertar el voto
+    INSERT INTO tbl_votos (vo_nombre, vo_apellido, vo_cedula, vo_opcion) 
+    VALUES (v_nombre, v_apellido, v_cedula, v_opcion);
+END//
+DELIMITER ;
+
+-- Actualizar Voto y Usuario
+DELIMITER //
+CREATE PROCEDURE procUpdateVotoUsuarioDDL(
+    IN v_voto_id INT,
+    IN v_nombre VARCHAR(100),
+    IN v_apellido VARCHAR(100),
+    IN v_cedula VARCHAR(100),
+    IN v_opcion VARCHAR(100),
+    IN v_usuario_id INT,
+    IN v_correo VARCHAR(100),
+    IN v_contrasena VARCHAR(100)
+)
+BEGIN
+    -- Actualizar el voto
+    UPDATE tbl_votos
+    SET vo_nombre = v_nombre,
+        vo_apellido = v_apellido,
+        vo_cedula = v_cedula,
+        vo_opcion = v_opcion
+    WHERE vo_id = v_voto_id;
+
+    -- Actualizar el usuario
+    UPDATE tbl_usuarios
+    SET usu_correo = v_correo,
+        usu_contrasena = v_contrasena
+    WHERE usu_id = v_usuario_id;
+END//
+DELIMITER ;
+
+-- Mostrar Votos y Usuarios
+DELIMITER //
+CREATE PROCEDURE procSelectVotosUsuariosDDL()
+BEGIN
+    SELECT 
+        u.usu_id, 
+        u.usu_correo, 
+        v.vo_id, 
+        v.vo_nombre, 
+        v.vo_apellido, 
+        v.vo_cedula, 
+        v.vo_opcion, 
+        v.vo_fecha_envio 
+    FROM tbl_usuarios u
+    LEFT JOIN tbl_votos v ON u.usu_id = v.vo_id; -- Adjust according to the logical relationship
+END//
+DELIMITER ;
+
+-- Eliminar Voto y Usuario
+DELIMITER //
+CREATE PROCEDURE procDeleteVotoUsuarioDDL(
+    IN v_voto_id INT,
+    IN v_usuario_id INT
+)
+BEGIN
+    -- Eliminar el voto
+    DELETE FROM tbl_votos WHERE vo_id = v_voto_id;
+
+    -- Eliminar el usuario
+    DELETE FROM tbl_usuarios WHERE usu_id = v_usuario_id;
+END//
+DELIMITER ;
