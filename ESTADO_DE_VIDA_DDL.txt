@@ -1,0 +1,89 @@
+-- usuarios - estado de vida 
+-- Insertar Usuario y Estado de Vida
+DELIMITER //
+CREATE PROCEDURE procInsertUsuarioEstadoDDL(
+    IN v_correo VARCHAR(100),
+    IN v_contrasena VARCHAR(100),
+    IN v_nombre VARCHAR(100),
+    IN v_apellido VARCHAR(100),
+    IN v_cedula VARCHAR(100),
+    IN v_estado VARCHAR(100),
+    IN v_fecha_defuncion VARCHAR(100)
+)
+BEGIN
+    -- Insertar el usuario
+    INSERT INTO tbl_usuarios (usu_correo, usu_contrasena) 
+    VALUES (v_correo, v_contrasena);
+    
+    -- Insertar el estado de vida asociado al usuario
+    INSERT INTO tbl_estado_vida (es_nombre, es_apellido, es_cedula, es_estado, es_fecha_defuncion) 
+    VALUES (v_nombre, v_apellido, v_cedula, v_estado, v_fecha_defuncion);
+END//
+DELIMITER ;
+
+-- Actualizar Usuario y Estado de Vida
+DELIMITER //
+CREATE PROCEDURE procUpdateUsuarioEstadoDDL(
+    IN v_usuario_id INT,
+    IN v_correo VARCHAR(100),
+    IN v_contrasena VARCHAR(100),
+    IN v_estado_id INT,
+    IN v_nombre VARCHAR(100),
+    IN v_apellido VARCHAR(100),
+    IN v_cedula VARCHAR(100),
+    IN v_estado VARCHAR(100),
+    IN v_fecha_defuncion VARCHAR(100)
+)
+BEGIN
+    -- Actualizar el usuario
+    UPDATE tbl_usuarios
+    SET usu_correo = v_correo,
+        usu_contrasena = v_contrasena
+    WHERE usu_id = v_usuario_id;
+
+    -- Actualizar el estado de vida
+    UPDATE tbl_estado_vida
+    SET es_nombre = v_nombre,
+        es_apellido = v_apellido,
+        es_cedula = v_cedula,
+        es_estado = v_estado,
+        es_fecha_defuncion = v_fecha_defuncion
+    WHERE es_id = v_estado_id;
+END//
+DELIMITER ;
+
+-- Mostrar Usuarios y Estados de Vida
+DELIMITER //
+CREATE PROCEDURE procSelectUsuariosEstadoDDL()
+BEGIN
+    SELECT 
+        u.usu_id, 
+        u.usu_correo, 
+        u.usu_fechaInicioSecion,
+        e.es_id,
+        e.es_nombre,
+        e.es_apellido,
+        e.es_cedula,
+        e.es_estado,
+        e.es_fecha_defuncion
+    FROM tbl_usuarios u
+    LEFT JOIN tbl_estado_vida e ON u.usu_id = e.es_id; 
+END//
+DELIMITER ;
+
+-- Eliminar Usuario y Estado de Vida
+DELIMITER //
+CREATE PROCEDURE procDeleteUsuarioEstadoDDL(
+    IN v_usuario_id INT,
+    IN v_estado_id INT
+)
+BEGIN
+    -- Eliminar el usuario
+    DELETE FROM tbl_usuarios WHERE usu_id = v_usuario_id;
+
+    -- Eliminar el estado de vida solo si no tiene usuarios asociados
+    DELETE FROM tbl_estado_vida WHERE es_id = v_estado_id AND NOT EXISTS (
+        SELECT 1 FROM tbl_usuarios WHERE usu_id = v_usuario_id
+    );
+END//
+DELIMITER ;

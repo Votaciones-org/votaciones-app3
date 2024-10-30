@@ -1,0 +1,100 @@
+DELIMITER //
+CREATE PROCEDURE procInsertVotoCandidatoDDL(
+    IN v_nombre VARCHAR(100),
+    IN v_apellido VARCHAR(100),
+    IN v_cedula VARCHAR(100),
+    IN v_opcion VARCHAR(100),
+    IN v_can_nombre VARCHAR(100),
+    IN v_can_apellido VARCHAR(100),
+    IN v_can_partido VARCHAR(100),
+    IN v_can_fecha_nacimiento VARCHAR(100),
+    IN v_can_propuesta TEXT
+)
+BEGIN
+    DECLARE v_candidato_id INT;
+
+    -- Insertar el candidato
+    INSERT INTO tbl_candidatos (can_nombre, can_apellido, can_partido, can_fecha_nacimiento, can_propuesta) 
+    VALUES (v_can_nombre, v_can_apellido, v_can_partido, v_can_fecha_nacimiento, v_can_propuesta);
+    
+    SET v_candidato_id = LAST_INSERT_ID();
+
+    -- Insertar el voto asociado al candidato
+    INSERT INTO tbl_votos (vo_nombre, vo_apellido, vo_cedula, vo_opcion, can_id) 
+    VALUES (v_nombre, v_apellido, v_cedula, v_opcion, v_candidato_id);
+END//
+DELIMITER ;
+
+-- Actualizar Voto y Candidato
+DELIMITER //
+CREATE PROCEDURE procUpdateVotoCandidatoDDL(
+    IN v_voto_id INT,
+    IN v_nombre VARCHAR(100),
+    IN v_apellido VARCHAR(100),
+    IN v_cedula VARCHAR(100),
+    IN v_opcion VARCHAR(100),
+    IN v_candidato_id INT,
+    IN v_can_nombre VARCHAR(100),
+    IN v_can_apellido VARCHAR(100),
+    IN v_can_partido VARCHAR(100),
+    IN v_can_fecha_nacimiento VARCHAR(100),
+    IN v_can_propuesta TEXT
+)
+BEGIN
+    -- Actualizar el voto
+    UPDATE tbl_votos
+    SET vo_nombre = v_nombre,
+        vo_apellido = v_apellido,
+        vo_cedula = v_cedula,
+        vo_opcion = v_opcion
+    WHERE vo_id = v_voto_id;
+
+    -- Actualizar el candidato
+    UPDATE tbl_candidatos
+    SET can_nombre = v_can_nombre,
+        can_apellido = v_can_apellido,
+        can_partido = v_can_partido,
+        can_fecha_nacimiento = v_can_fecha_nacimiento,
+        can_propuesta = v_can_propuesta
+    WHERE can_id = v_candidato_id;
+END//
+DELIMITER ;
+
+-- Mostrar Votos y Candidatos
+DELIMITER //
+CREATE PROCEDURE procSelectVotosCandidatosDDL()
+BEGIN
+    SELECT 
+        v.vo_id, 
+        v.vo_nombre, 
+        v.vo_apellido, 
+        v.vo_cedula, 
+        v.vo_opcion, 
+        v.vo_fecha_envio,
+        c.can_id,
+        c.can_nombre,
+        c.can_apellido,
+        c.can_partido,
+        c.can_fecha_nacimiento,
+        c.can_propuesta
+    FROM tbl_votos v
+    LEFT JOIN tbl_candidatos c ON v.can_id = c.can_id; 
+END//
+DELIMITER ;
+
+-- Eliminar Voto y Candidato
+DELIMITER //
+CREATE PROCEDURE procDeleteVotoCandidatoDDL(
+    IN v_voto_id INT,
+    IN v_candidato_id INT
+)
+BEGIN
+    -- Eliminar el voto
+    DELETE FROM tbl_votos WHERE vo_id = v_voto_id;
+
+    -- Eliminar el candidato si no tiene votos asociados
+    DELETE FROM tbl_candidatos WHERE can_id = v_candidato_id AND NOT EXISTS (
+        SELECT 1 FROM tbl_votos WHERE can_id = v_candidato_id
+    );
+END//
+DELIMITER ;

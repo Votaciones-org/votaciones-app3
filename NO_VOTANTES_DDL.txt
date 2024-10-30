@@ -1,0 +1,86 @@
+-- Insertar Voto y Usuario No Votante
+DELIMITER //
+CREATE PROCEDURE procInsertVotoUsuarioNoVotanteDDL(
+    IN v_nombre VARCHAR(100),
+    IN v_apellido VARCHAR(100),
+    IN v_cedula VARCHAR(100),
+    IN v_opcion VARCHAR(100)
+)
+BEGIN
+    -- Insertar el usuario no votante
+    INSERT INTO tbl_usuarios_no_votantes (no_nombre, no_apellido, no_cedula, no_opcion) 
+    VALUES (v_nombre, v_apellido, v_cedula, v_opcion);
+    
+    -- Insertar el voto asociado al usuario no votante
+    INSERT INTO tbl_votos (vo_nombre, vo_apellido, vo_cedula, vo_opcion) 
+    VALUES (v_nombre, v_apellido, v_cedula, v_opcion);
+END//
+DELIMITER ;
+
+-- Actualizar Voto y Usuario No Votante
+DELIMITER //
+CREATE PROCEDURE procUpdateVotoUsuarioNoVotanteDDL(
+    IN v_voto_id INT,
+    IN v_nombre VARCHAR(100),
+    IN v_apellido VARCHAR(100),
+    IN v_cedula VARCHAR(100),
+    IN v_opcion VARCHAR(100),
+    IN v_usuario_no_id INT
+)
+BEGIN
+    -- Actualizar el voto
+    UPDATE tbl_votos
+    SET vo_nombre = v_nombre,
+        vo_apellido = v_apellido,
+        vo_cedula = v_cedula,
+        vo_opcion = v_opcion
+    WHERE vo_id = v_voto_id;
+
+    -- Actualizar el usuario no votante
+    UPDATE tbl_usuarios_no_votantes
+    SET no_nombre = v_nombre,
+        no_apellido = v_apellido,
+        no_cedula = v_cedula,
+        no_opcion = v_opcion
+    WHERE no_id = v_usuario_no_id;
+END//
+DELIMITER ;
+
+-- Mostrar Votos y Usuarios No Votantes
+DELIMITER //
+CREATE PROCEDURE procSelectVotosUsuariosNoVotantesDDL()
+BEGIN
+    SELECT 
+        v.vo_id, 
+        v.vo_nombre, 
+        v.vo_apellido, 
+        v.vo_cedula, 
+        v.vo_opcion, 
+        v.vo_fecha_envio,
+        u.no_id,
+        u.no_nombre,
+        u.no_apellido,
+        u.no_cedula,
+        u.no_opcion,
+        u.no_fecha_registro
+    FROM tbl_votos v
+    LEFT JOIN tbl_usuarios_no_votantes u ON v.vo_cedula = u.no_cedula; 
+END//
+DELIMITER ;
+
+-- Eliminar Voto y Usuario No Votante
+DELIMITER //
+CREATE PROCEDURE procDeleteVotoUsuarioNoVotanteDDL(
+    IN v_voto_id INT,
+    IN v_usuario_no_id INT
+)
+BEGIN
+    -- Eliminar el voto
+    DELETE FROM tbl_votos WHERE vo_id = v_voto_id;
+
+    -- Eliminar el usuario no votante solo si no tiene votos asociados
+    DELETE FROM tbl_usuarios_no_votantes WHERE no_id = v_usuario_no_id AND NOT EXISTS (
+        SELECT 1 FROM tbl_votos WHERE vo_id = v_voto_id
+    );
+END//
+DELIMITER ;
