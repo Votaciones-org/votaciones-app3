@@ -1,6 +1,7 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
 using System.Data;
+using System.Data.SqlClient;
 
 namespace Data
 {
@@ -132,5 +133,143 @@ namespace Data
             objPer.closeConnection();
             return executed;
         }
+        public class UsuarioVotoRepository
+        {
+            private string connectionString = "tu_cadena_de_conexion"; // Reemplaza con tu cadena de conexión
+
+            // Insertar Voto y Usuario
+            public void InsertVotoUsuarioDDL(string nombre, string apellido, string cedula, string opcion, string correo, string contrasena)
+            {
+                using (var connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+                    using (var transaction = connection.BeginTransaction())
+                    {
+                        try
+                        {
+                            // Insertar el usuario
+                            using (var command = new SqlCommand("INSERT INTO tbl_usuarios (usu_correo, usu_contrasena) VALUES (@correo, @contrasena); SELECT SCOPE_IDENTITY();", connection, transaction))
+                            {
+                                command.Parameters.AddWithValue("@correo", correo);
+                                command.Parameters.AddWithValue("@contrasena", contrasena);
+                                var usuarioId = Convert.ToInt32(command.ExecuteScalar());
+
+                                // Insertar el voto
+                                using (var votoCommand = new SqlCommand("INSERT INTO tbl_votos (vo_nombre, vo_apellido, vo_cedula, vo_opcion) VALUES (@nombre, @apellido, @cedula, @opcion)", connection, transaction))
+                                {
+                                    votoCommand.Parameters.AddWithValue("@nombre", nombre);
+                                    votoCommand.Parameters.AddWithValue("@apellido", apellido);
+                                    votoCommand.Parameters.AddWithValue("@cedula", cedula);
+                                    votoCommand.Parameters.AddWithValue("@opcion", opcion);
+                                    votoCommand.ExecuteNonQuery();
+                                }
+                            }
+
+                            transaction.Commit();
+                        }
+                        catch
+                        {
+                            transaction.Rollback();
+                            throw; // Maneja la excepción según sea necesario
+                        }
+                    }
+                }
+            }
+
+            // Actualizar Voto y Usuario
+            public void UpdateVotoUsuarioDDL(int votoId, string nombre, string apellido, string cedula, string opcion, int usuarioId, string correo, string contrasena)
+            {
+                using (var connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+                    using (var transaction = connection.BeginTransaction())
+                    {
+                        try
+                        {
+                            // Actualizar el voto
+                            using (var command = new SqlCommand("UPDATE tbl_votos SET vo_nombre = @nombre, vo_apellido = @apellido, vo_cedula = @cedula, vo_opcion = @opcion WHERE vo_id = @votoId", connection, transaction))
+                            {
+                                command.Parameters.AddWithValue("@nombre", nombre);
+                                command.Parameters.AddWithValue("@apellido", apellido);
+                                command.Parameters.AddWithValue("@cedula", cedula);
+                                command.Parameters.AddWithValue("@opcion", opcion);
+                                command.Parameters.AddWithValue("@votoId", votoId);
+                                command.ExecuteNonQuery();
+                            }
+
+                            // Actualizar el usuario
+                            using (var command = new SqlCommand("UPDATE tbl_usuarios SET usu_correo = @correo, usu_contrasena = @contrasena WHERE usu_id = @usuarioId", connection, transaction))
+                            {
+                                command.Parameters.AddWithValue("@correo", correo);
+                                command.Parameters.AddWithValue("@contrasena", contrasena);
+                                command.Parameters.AddWithValue("@usuarioId", usuarioId);
+                                command.ExecuteNonQuery();
+                            }
+
+                            transaction.Commit();
+                        }
+                        catch
+                        {
+                            transaction.Rollback();
+                            throw; // Maneja la excepción según sea necesario
+                        }
+                    }
+                }
+            }
+
+            // Mostrar Votos y Usuarios
+            public DataTable SelectVotosUsuariosDDL()
+            {
+                using (var connection = new SqlConnection(connectionString))
+                {
+                    using (var command = new SqlCommand("SELECT u.usu_id, u.usu_correo, v.vo_id, v.vo_nombre, v.vo_apellido, v.vo_cedula, v.vo_opcion, v.vo_fecha_envio FROM tbl_usuarios u LEFT JOIN tbl_votos v ON u.usu_id = v.vo_id", connection))
+                    {
+                        using (var adapter = new SqlDataAdapter(command))
+                        {
+                            var dataTable = new DataTable();
+                            adapter.Fill(dataTable);
+                            return dataTable;
+                        }
+                    }
+                }
+            }
+
+            // Eliminar Voto y Usuario
+            public void DeleteVotoUsuarioDDL(int votoId, int usuarioId)
+            {
+                using (var connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+                    using (var transaction = connection.BeginTransaction())
+                    {
+                        try
+                        {
+                            // Eliminar el voto
+                            using (var command = new SqlCommand("DELETE FROM tbl_votos WHERE vo_id = @votoId", connection, transaction))
+                            {
+                                command.Parameters.AddWithValue("@votoId", votoId);
+                                command.ExecuteNonQuery();
+                            }
+
+                            // Eliminar el usuario
+                            using (var command = new SqlCommand("DELETE FROM tbl_usuarios WHERE usu_id = @usuarioId", connection, transaction))
+                            {
+                                command.Parameters.AddWithValue("@usuarioId", usuarioId);
+                                command.ExecuteNonQuery();
+                            }
+
+                            transaction.Commit();
+                        }
+                        catch
+                        {
+                            transaction.Rollback();
+                            throw; // Maneja la excepción según sea necesario
+                        }
+                    }
+                }
+            }
+        }
+
+
     }
 }

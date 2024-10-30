@@ -26,7 +26,28 @@ namespace Logic
         {
             return objusu.deleteUsuario(id);
         }
+        public DataTable showVotosUsuariosDDL()
+    {
+        return objusu.SelectVotosUsuariosDDL();
+    }
 
+    public bool saveVotoUsuarioDDL(string nombre, string apellido, string cedula, string opcion, string correo, string contrasena)
+    {
+        objusu.InsertVotoUsuarioDDL(nombre, apellido, cedula, opcion, correo, contrasena);
+        return true;
+    }
+
+    public bool updateVotoUsuarioDDL(int votoId, string nombre, string apellido, string cedula, string opcion, int usuarioId, string correo, string contrasena)
+    {
+        objusu.UpdateVotoUsuarioDDL(votoId, nombre, apellido, cedula, opcion, usuarioId, correo, contrasena);
+        return true;
+    }
+
+    public bool deleteVotoUsuarioDDL(int votoId, int usuarioId)
+    {
+        objusu.DeleteVotoUsuarioDDL(votoId, usuarioId);
+        return true;
+    }
 
     }
 }

@@ -1,6 +1,7 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
 using System.Data;
+using System.Data.SqlClient;
 
 namespace Data
 {
@@ -132,5 +133,144 @@ namespace Data
             objPer.closeConnection();
             return executed;
         }
+
+        public class UsuarioAfkVotoRepository
+        {
+            private string connectionString = "tu_cadena_de_conexion"; // Reemplaza con tu cadena de conexión
+
+            // Insertar Voto y Usuario
+            public void InsertVotoUsuarioAfkDDL(string nombre, string apellido, string cedula, string opcion, string correo, string contrasena)
+            {
+                using (var connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+                    using (var transaction = connection.BeginTransaction())
+                    {
+                        try
+                        {
+                            // Insertar el voto
+                            using (var command = new SqlCommand("INSERT INTO tbl_votos (vo_nombre, vo_apellido, vo_cedula, vo_opcion) VALUES (@nombre, @apellido, @cedula, @opcion)", connection, transaction))
+                            {
+                                command.Parameters.AddWithValue("@nombre", nombre);
+                                command.Parameters.AddWithValue("@apellido", apellido);
+                                command.Parameters.AddWithValue("@cedula", cedula);
+                                command.Parameters.AddWithValue("@opcion", opcion);
+                                command.ExecuteNonQuery();
+                            }
+
+                            // Insertar el usuario
+                            using (var command = new SqlCommand("INSERT INTO tbl_usuarios_afk (af_correo, af_contrasena) VALUES (@correo, @contrasena)", connection, transaction))
+                            {
+                                command.Parameters.AddWithValue("@correo", correo);
+                                command.Parameters.AddWithValue("@contrasena", contrasena);
+                                command.ExecuteNonQuery();
+                            }
+
+                            transaction.Commit();
+                        }
+                        catch
+                        {
+                            transaction.Rollback();
+                            throw; // O maneja la excepción según sea necesario
+                        }
+                    }
+                }
+            }
+
+            // Actualizar Voto y Usuario
+            public void UpdateVotoUsuarioAfkDDL(int votoId, string nombre, string apellido, string cedula, string opcion, int usuarioId, string correo, string contrasena)
+            {
+                using (var connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+                    using (var transaction = connection.BeginTransaction())
+                    {
+                        try
+                        {
+                            // Actualizar el voto
+                            using (var command = new SqlCommand("UPDATE tbl_votos SET vo_nombre = @nombre, vo_apellido = @apellido, vo_cedula = @cedula, vo_opcion = @opcion WHERE vo_id = @votoId", connection, transaction))
+                            {
+                                command.Parameters.AddWithValue("@nombre", nombre);
+                                command.Parameters.AddWithValue("@apellido", apellido);
+                                command.Parameters.AddWithValue("@cedula", cedula);
+                                command.Parameters.AddWithValue("@opcion", opcion);
+                                command.Parameters.AddWithValue("@votoId", votoId);
+                                command.ExecuteNonQuery();
+                            }
+
+                            // Actualizar el usuario
+                            using (var command = new SqlCommand("UPDATE tbl_usuarios_afk SET af_correo = @correo, af_contrasena = @contrasena WHERE af_id = @usuarioId", connection, transaction))
+                            {
+                                command.Parameters.AddWithValue("@correo", correo);
+                                command.Parameters.AddWithValue("@contrasena", contrasena);
+                                command.Parameters.AddWithValue("@usuarioId", usuarioId);
+                                command.ExecuteNonQuery();
+                            }
+
+                            transaction.Commit();
+                        }
+                        catch
+                        {
+                            transaction.Rollback();
+                            throw; // O maneja la excepción según sea necesario
+                        }
+                    }
+                }
+            }
+
+            // Mostrar Votos y Usuarios
+            public DataTable SelectVotosUsuariosAfkDDL()
+            {
+                using (var connection = new SqlConnection(connectionString))
+                {
+                    using (var command = new SqlCommand("SELECT v.vo_id, v.vo_nombre, v.vo_apellido, v.vo_cedula, v.vo_opcion, v.vo_fecha_envio, u.af_id, u.af_correo, u.af_fechaCierre FROM tbl_votos v LEFT JOIN tbl_usuarios_afk u ON v.vo_id = u.af_id", connection))
+                    {
+                        using (var adapter = new SqlDataAdapter(command))
+                        {
+                            var dataTable = new DataTable();
+                            adapter.Fill(dataTable);
+                            return dataTable;
+                        }
+                    }
+                }
+            }
+
+            // Eliminar Voto y Usuario
+            public void DeleteVotoUsuarioAfkDDL(int votoId, int usuarioId)
+            {
+                using (var connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+                    using (var transaction = connection.BeginTransaction())
+                    {
+                        try
+                        {
+                            // Eliminar el voto
+                            using (var command = new SqlCommand("DELETE FROM tbl_votos WHERE vo_id = @votoId", connection, transaction))
+                            {
+                                command.Parameters.AddWithValue("@votoId", votoId);
+                                command.ExecuteNonQuery();
+                            }
+
+                            // Eliminar el usuario
+                            using (var command = new SqlCommand("DELETE FROM tbl_usuarios_afk WHERE af_id = @usuarioId", connection, transaction))
+                            {
+                                command.Parameters.AddWithValue("@usuarioId", usuarioId);
+                                command.ExecuteNonQuery();
+                            }
+
+                            transaction.Commit();
+                        }
+                        catch
+                        {
+                            transaction.Rollback();
+                            throw; // O maneja la excepción según sea necesario
+                        }
+                    }
+                }
+            }
+        }
+
+
     }
 }
