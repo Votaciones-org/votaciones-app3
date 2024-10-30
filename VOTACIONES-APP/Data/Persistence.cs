@@ -75,5 +75,45 @@ namespace Data
         {
             throw new NotImplementedException();
         }
+
+        public DataSet showEstadoVida()
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool saveEstadoVida(string nombre, string apellido, string cedula, string estado, string fechaDefuncion)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool updateEstadoVida(int id, string nombre, string apellido, string cedula, string estado, string fechaDefuncion)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool deleteEstadoVida(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public DataSet showCandidatosEliminados()
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool saveCandidatoEliminado(string nombre, string apellido, string partido, string fechaNacimiento, string propuesta)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool updateCandidatoEliminado(int id, string nombre, string apellido, string partido, string fechaNacimiento, string propuesta)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool deleteCandidatoEliminado(int id)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
