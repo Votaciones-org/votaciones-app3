@@ -1,20 +1,16 @@
 ﻿using Data;
-using System;
-using System.Collections.Generic;
-using System.Data.SqlClient;
+
 using System.Data;
-using System.Linq;
-using System.Web;
+
 
 namespace Logic
 {
     public class Estado_vidaLog
-    {
-        
-        Persistence objEsV = new Persistence();
+    {         Persistence objEsV = new Persistence();
 
         public DataSet showEstadoVida()
         {
+
             return objEsV.showEstadoVida();
         }
 
