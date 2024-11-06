@@ -67,12 +67,60 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="AWUsuarios.aspx" />
+    <Content Include="AWUsuariosAFK.aspx" />
+    <Content Include="AWUsuariosNoVotantes.aspx" />
+    <Content Include="Inicio.aspx" />
     <Content Include="Web.config" />
+    <Content Include="AWCandidatos.aspx" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AWUsuarios.aspx.cs">
+      <DependentUpon>AWUsuarios.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AWUsuarios.aspx.designer.cs">
+      <DependentUpon>AWUsuarios.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AWUsuariosAFK.aspx.cs">
+      <DependentUpon>AWUsuariosAFK.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AWUsuariosAFK.aspx.designer.cs">
+      <DependentUpon>AWUsuariosAFK.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AWUsuariosNoVotantes.aspx.cs">
+      <DependentUpon>AWUsuariosNoVotantes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AWUsuariosNoVotantes.aspx.designer.cs">
+      <DependentUpon>AWUsuariosNoVotantes.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Inicio.aspx.cs">
+      <DependentUpon>Inicio.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Inicio.aspx.designer.cs">
+      <DependentUpon>Inicio.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="main.Master.cs">
+      <DependentUpon>main.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="main.Master.designer.cs">
+      <DependentUpon>main.Master</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="AWCandidatos.aspx.cs">
+      <DependentUpon>AWCandidatos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AWCandidatos.aspx.designer.cs">
+      <DependentUpon>AWCandidatos.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="main.Master" />
     <None Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -80,6 +128,12 @@
     <None Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Logic\Logic.csproj">
+      <Project>{dd1c5727-de3d-42ad-be1b-22f315b0e976}</Project>
+      <Name>Logic</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
