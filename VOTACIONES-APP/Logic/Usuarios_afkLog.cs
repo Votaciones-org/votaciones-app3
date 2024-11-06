@@ -6,47 +6,60 @@ using System.Web;
 
 namespace Logic
 {
-    public class Usuarios_afkLog
+    public class UsuariosAfkLog
     {
-        Usuarios_afkLog objAFK = new Usuarios_afkLog();
+        // Crear una instancia de la clase de datos (Usuarios_afk_dat).
+        private Data.Usuarios_afk_dat objAfkDat = new Data.Usuarios_afk_dat();
 
+        // Método para mostrar los usuarios AFK.
         public DataSet showUsuariosAfk()
         {
-            return objAFK.showUsuariosAfk();
+            return objAfkDat.showUsuariosAfk();
         }
+
+        // Método para guardar un nuevo usuario AFK.
         public bool saveUsuarioAfk(string correo, string contrasena)
         {
-            return objAFK.saveUsuarioAfk(correo, contrasena);
+            return objAfkDat.saveUsuarioAfk(correo, contrasena);
         }
+
+        // Método para actualizar un usuario AFK.
         public bool updateUsuarioAfk(int id, string correo, string contrasena)
         {
-            return objAFK.updateUsuarioAfk(id,correo, contrasena);
+            return objAfkDat.updateUsuarioAfk(id, correo, contrasena);
         }
+
+        // Método para eliminar un usuario AFK.
         public bool deleteUsuarioAfk(int id)
         {
-            return objAFK.deleteUsuarioAfk(id);
-        }
-        public DataTable showVotosUsuariosAfkDDL()
-        {
-            return objAFK.SelectVotosUsuariosAfkDDL();
+            return objAfkDat.deleteUsuarioAfk(id);
         }
 
-        public bool saveVotoUsuarioAfkDDL(string nombre, string apellido, string cedula, string opcion, string correo, string contrasena)
-        {
-            objAFK.InsertVotoUsuarioAfkDDL(nombre, apellido, cedula, opcion, correo, contrasena);
-            return true;
-        }
+        //// Método para mostrar los votos y usuarios AFK.
+        //public DataTable showVotosUsuariosAfkDDL()
+        //{
+        //    return objAfkDat.UsuarioAfkVotoRepository.SelectVotosUsuariosAfkDDL();
+        //}
 
-        public bool updateVotoUsuarioAfkDDL(int votoId, string nombre, string apellido, string cedula, string opcion, int usuarioId, string correo, string contrasena)
-        {
-            objAFK.UpdateVotoUsuarioAfkDDL(votoId, nombre, apellido, cedula, opcion, usuarioId, correo, contrasena);
-            return true;
-        }
+        //// Método para guardar un voto y un usuario AFK.
+        //public bool saveVotoUsuarioAfkDDL(string nombre, string apellido, string cedula, string opcion, string correo, string contrasena)
+        //{
+        //    objAfkDat.UsuarioAfkVotoRepository.InsertVotoUsuarioAfkDDL(nombre, apellido, cedula, opcion, correo, contrasena);
+        //    return true;
+        //}
 
-        public bool deleteVotoUsuarioAfkDDL(int votoId, int usuarioId)
-        {
-            objAFK.DeleteVotoUsuarioAfkDDL(votoId, usuarioId);
-            return true;
-        }
+        //// Método para actualizar un voto y un usuario AFK.
+        //public bool updateVotoUsuarioAfkDDL(int votoId, string nombre, string apellido, string cedula, string opcion, int usuarioId, string correo, string contrasena)
+        //{
+        //    objAfkDat.UsuarioAfkVotoRepository.UpdateVotoUsuarioAfkDDL(votoId, nombre, apellido, cedula, opcion, usuarioId, correo, contrasena);
+        //    return true;
+        //}
+
+        //// Método para eliminar un voto y un usuario AFK.
+        //public bool deleteVotoUsuarioAfkDDL(int votoId, int usuarioId)
+        //{
+        //    objAfkDat.UsuarioAfkVotoRepository.DeleteVotoUsuarioAfkDDL(votoId, usuarioId);
+        //    return true;
+        //}
     }
 }
