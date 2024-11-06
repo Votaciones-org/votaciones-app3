@@ -1,0 +1,97 @@
+-- Crud Partidos - votos
+-- Insertar Partido - votos
+
+DELIMITER //
+CREATE PROCEDURE procInsertPartidoDDL(
+    IN v_nombre_partido VARCHAR(100),
+    IN v_descripcion TEXT
+)
+BEGIN
+    INSERT INTO tbl_partidos (par_nombre_partido, par_descripcion) 
+    VALUES (v_nombre_partido, v_descripcion);
+END//
+DELIMITER ;
+
+-- Seleccionar Todos los partidos
+DELIMITER //
+CREATE PROCEDURE procSelectPartidosDDL()
+BEGIN
+    SELECT * FROM tbl_partidos;
+END//
+DELIMITER ;
+
+-- Actualizar un Partido
+DELIMITER //
+CREATE PROCEDURE procUpdatePartidoDDL(
+    IN v_par_id INT,
+    IN v_nombre_partido VARCHAR(100),
+    IN v_descripcion TEXT
+)
+BEGIN
+    UPDATE tbl_partidos
+    SET par_nombre_partido = v_nombre_partido,
+        par_descripcion = v_descripcion
+    WHERE par_id = v_par_id;
+END//
+DELIMITER ;
+
+-- Eliminar un Partido
+DELIMITER //
+CREATE PROCEDURE procDeletePartidoDDL(
+    IN v_par_id INT
+)
+BEGIN
+    DELETE FROM tbl_partidos WHERE par_id = v_par_id;
+END//
+DELIMITER ;
+
+-- Crud Votos
+DELIMITER //
+CREATE PROCEDURE procInsertVotoDDL(
+    IN v_nombre VARCHAR(100),
+    IN v_apellido VARCHAR(100),
+    IN v_cedula VARCHAR(100),
+    IN v_opcion VARCHAR(100)
+)
+BEGIN
+    INSERT INTO tbl_votos (vo_nombre, vo_apellido, vo_cedula, vo_opcion) 
+    VALUES (v_nombre, v_apellido, v_cedula, v_opcion);
+END//
+DELIMITER ;
+
+-- Seleccionar los votos
+DELIMITER //
+CREATE PROCEDURE procSelectVotosDDL()
+BEGIN
+    SELECT * FROM tbl_votos;
+END//
+DELIMITER ;
+
+-- Actualizar un Voto
+DELIMITER //
+CREATE PROCEDURE procUpdateVotoDDL(
+    IN v_vo_id INT,
+    IN v_nombre VARCHAR(100),
+    IN v_apellido VARCHAR(100),
+    IN v_cedula VARCHAR(100),
+    IN v_opcion VARCHAR(100)
+)
+BEGIN
+    UPDATE tbl_votos
+    SET vo_nombre = v_nombre,
+        vo_apellido = v_apellido,
+        vo_cedula = v_cedula,
+        vo_opcion = v_opcion
+    WHERE vo_id = v_vo_id;
+END//
+DELIMITER ;
+
+-- Eliminar un voto
+DELIMITER //
+CREATE PROCEDURE procDeleteVotoDDL(
+    IN v_vo_id INT
+)
+BEGIN
+    DELETE FROM tbl_votos WHERE vo_id = v_vo_id;
+END//
+DELIMITER ;
