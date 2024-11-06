@@ -130,11 +130,24 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+<<<<<<< Updated upstream:VOTACIONES-APP/Presentacion/Presentation.csproj
+=======
+    <ProjectReference Include="..\Data\Data.csproj">
+      <Project>{2a397f3b-ff17-4a62-88c3-c3a2da8218e4}</Project>
+      <Name>Data</Name>
+    </ProjectReference>
+>>>>>>> Stashed changes:VOTACIONES-APP/Presentacion/Presentacion.csproj
     <ProjectReference Include="..\Logic\Logic.csproj">
       <Project>{dd1c5727-de3d-42ad-be1b-22f315b0e976}</Project>
       <Name>Logic</Name>
     </ProjectReference>
   </ItemGroup>
+<<<<<<< Updated upstream:VOTACIONES-APP/Presentacion/Presentation.csproj
+=======
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+>>>>>>> Stashed changes:VOTACIONES-APP/Presentacion/Presentacion.csproj
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

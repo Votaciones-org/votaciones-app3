@@ -31,5 +31,25 @@ namespace Data
         {
             _connection.Close();
         }
+
+        public DataSet SelectPartidoCandidatoDDL()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void InsertPartidoCandidatoDDL(string nombre, string apellido, string cedula, string opcion, string canNombre, string canApellido, string canPartido, string canFechaNacimiento, string canPropuesta)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void UpdatePartidoCandidatoDDL(int votoId, string nombre, string apellido, string cedula, string opcion, int candidatoId, string canNombre, string canApellido, string canPartido, string canFechaNacimiento, string canPropuesta)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void DeletePartidoCandidatoDDL(int votoId, int candidatoId)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

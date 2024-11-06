@@ -71,10 +71,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CandidatosLog.cs" />
+    <Compile Include="Candidatos_eliminadosLog.cs" />
+    <Compile Include="Estado_vidaLog.cs" />
+    <Compile Include="PartidosLog.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UsuariosLog.cs" />
     <Compile Include="Usuarios_afkLog.cs" />
     <Compile Include="Usuarios_No_votantesLog.cs" />
+    <Compile Include="VotosLog.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
