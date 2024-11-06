@@ -9,55 +9,31 @@ using System.Web;
 namespace Logic
 {
     public class PartidosLog
-<<<<<<< HEAD
-    {
-        Persistence objPart = new Persistence();
+    {        // Create an instance of the Persistence class to handle database connections.
+        Persistence objPar = new Persistence();
 
-=======
-
-    {        
-        Persistence objPart = new Persistence();
-
-
->>>>>>> 9cc09343b2dea2c78f8895ab9a9e349672bc826b
+        // Method to show parties from the database.
         public DataSet showPartidos()
         {
-            return objPart.showPartidos();
+            return objPar.showPartidos();
         }
 
-<<<<<<< HEAD
+        // Method to save a new party.
         public bool savePartido(string nombrePartido, string descripcion)
         {
-            
-            return objPart.savePartido(nombrePartido, descripcion);
+            return objPar.savePartido(nombrePartido, descripcion);
         }
 
+        // Method to update a party.
         public bool updatePartido(int id, string nombrePartido, string descripcion)
         {
-           
-            return objPart.updatePartido(id, nombrePartido, descripcion);
-        }
-       
-=======
-
-        public bool savePartido(string nombrePartido, string descripcion)
-        {
-
-            return objPart.savePartido(nombrePartido, descripcion);
+            return objPar.updatePartido(id, nombrePartido, descripcion);
         }
 
-
-        public bool updatePartido(int id, string nombrePartido, string descripcion)
-        {
-
-            return objPart.updatePartido(id, nombrePartido, descripcion);
-        }
-
-
->>>>>>> 9cc09343b2dea2c78f8895ab9a9e349672bc826b
+        // Method to delete a party (if needed).
         public bool deletePartido(int id)
         {
-            return objPart.deletePartido(id);
+            return objPar.deletePartido(id);
         }
     }
 }
