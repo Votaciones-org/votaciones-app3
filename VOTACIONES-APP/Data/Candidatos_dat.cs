@@ -118,6 +118,11 @@ namespace Data
             return executed;
         }
 
+        public DataSet SelectVotosCandidatosDDL()
+        {
+            throw new NotImplementedException();
+        }
+
         public class VotoCandidatoRepository
         {
             private string connectionString = "tu_cadena_de_conexion"; 
