@@ -1,6 +1,7 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
 using System.Data;
+using System.Data.SqlClient;
 
 namespace Data
 {
@@ -132,5 +133,160 @@ namespace Data
             objPer.closeConnection();
             return executed;
         }
+
+        public class PartidoCandidatoRepository
+        {
+            private string connectionString = "tu_cadena_de_conexion";
+
+            // Insertar Partido y Candidato
+            public void InsertPartidoCandidatoDDL(string nombrePartido, string descripcion, string canNombre, string canApellido, DateTime canFechaNacimiento, string canPropuesta)
+            {
+                using (var connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+                    using (var transaction = connection.BeginTransaction())
+                    {
+                        try
+                        {
+                            // Llamar al procedimiento almacenado para insertar el partido
+                            int partidoId;
+                            using (var command = new SqlCommand("procInsertPartidoDDL", connection, transaction))
+                            {
+                                command.CommandType = CommandType.StoredProcedure;
+                                command.Parameters.AddWithValue("@v_nombre_partido", nombrePartido);
+                                command.Parameters.AddWithValue("@v_descripcion", descripcion);
+
+                                // Ejecución y recuperación del ID
+                                command.Parameters.Add("@partidoId", SqlDbType.Int).Direction = ParameterDirection.Output;
+                                command.ExecuteNonQuery();
+
+                                partidoId = Convert.ToInt32(command.Parameters["@partidoId"].Value);
+                            }
+
+                            // Llamar al procedimiento almacenado para insertar el candidato
+                            using (var candidatoCommand = new SqlCommand("procInsertCandidatoDDL", connection, transaction))
+                            {
+                                candidatoCommand.CommandType = CommandType.StoredProcedure;
+                                candidatoCommand.Parameters.AddWithValue("@v_nombre", canNombre);
+                                candidatoCommand.Parameters.AddWithValue("@v_apellido", canApellido);
+                                candidatoCommand.Parameters.AddWithValue("@v_partido_id", partidoId);
+                                candidatoCommand.Parameters.AddWithValue("@v_fecha_nacimiento", canFechaNacimiento);
+                                candidatoCommand.Parameters.AddWithValue("@v_propuesta", canPropuesta);
+
+                                // Ejecutar el comando
+                                candidatoCommand.ExecuteNonQuery();
+                            }
+
+                            transaction.Commit();
+                        }
+                        catch (Exception ex)
+                        {
+                            transaction.Rollback();
+                            // Log o manejar la excepción como sea necesario
+                            throw new Exception("Error al insertar partido y candidato", ex);
+                        }
+                    }
+                }
+            }
+
+            // Actualizar partido y Candidato
+            public void UpdatePartidoCandidatoDDL(int partidoId, string nombre, string apellido, string cedula, string opcion,
+                int candidatoId, string canNombre, string canApellido, string canPartido, DateTime canFechaNacimiento, string canPropuesta)
+            {
+                using (var connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+                    using (var transaction = connection.BeginTransaction())
+                    {
+                        try
+                        {
+                            // Actualizar el partido
+                            using (var command = new SqlCommand("UPDATE tbl_partidos SET vo_nombre = @nombre, vo_apellido = @apellido, vo_cedula = @cedula, vo_opcion = @opcion WHERE vo_id = @partidoId", connection, transaction))
+                            {
+                                command.Parameters.AddWithValue("@nombre", nombre);
+                                command.Parameters.AddWithValue("@apellido", apellido);
+                                command.Parameters.AddWithValue("@cedula", cedula);
+                                command.Parameters.AddWithValue("@opcion", opcion);
+                                command.Parameters.AddWithValue("@partidoId", partidoId);
+                                command.ExecuteNonQuery();
+                            }
+
+                            // Actualizar el candidato
+                            using (var command = new SqlCommand("UPDATE tbl_candidatos SET can_nombre = @canNombre, can_apellido = @canApellido, can_partido = @canPartido, can_fecha_nacimiento = @canFechaNacimiento, can_propuesta = @canPropuesta WHERE can_id = @candidatoId", connection, transaction))
+                            {
+                                command.Parameters.AddWithValue("@canNombre", canNombre);
+                                command.Parameters.AddWithValue("@canApellido", canApellido);
+                                command.Parameters.AddWithValue("@canPartido", canPartido);
+                                command.Parameters.AddWithValue("@canFechaNacimiento", canFechaNacimiento);
+                                command.Parameters.AddWithValue("@canPropuesta", canPropuesta);
+                                command.Parameters.AddWithValue("@candidatoId", candidatoId);
+                                command.ExecuteNonQuery();
+                            }
+
+                            transaction.Commit();
+                        }
+                        catch (Exception ex)
+                        {
+                            transaction.Rollback();
+                            throw new Exception("Error al actualizar candidato", ex);
+                        }
+                    }
+                }
+            }
+
+            // Mostrar partidos y Candidatos
+            public DataTable SelectPartidoCandidatoDDL()
+            {
+                using (var connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+                    using (var command = new SqlCommand("SELECT v.vo_id, v.vo_nombre, v.vo_apellido, v.vo_cedula, v.vo_opcion, v.vo_fecha_envio, c.can_id, c.can_nombre, c.can_apellido, c.can_partido, c.can_fecha_nacimiento, c.can_propuesta FROM tbl_partidos v LEFT JOIN tbl_candidatos c ON v.can_id = c.can_id", connection))
+                    {
+                        using (var adapter = new SqlDataAdapter(command))
+                        {
+                            var dataTable = new DataTable();
+                            adapter.Fill(dataTable);
+                            return dataTable;
+                        }
+                    }
+                }
+            }
+
+            // Eliminar partido y Candidato
+            public void DeletePartidoCandidatoDDL(int partidoId, int candidatoId)
+            {
+                using (var connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+                    using (var transaction = connection.BeginTransaction())
+                    {
+                        try
+                        {
+                            // Eliminar el voto
+                            using (var command = new SqlCommand("DELETE FROM tbl_partidos WHERE vo_id = @partidoId", connection, transaction))
+                            {
+                                command.Parameters.AddWithValue("@votoId", partidoId);
+                                command.ExecuteNonQuery();
+                            }
+
+                            // Eliminar el candidato si no tiene partidos asociados
+                            using (var command = new SqlCommand("DELETE FROM tbl_candidatos WHERE can_id = @candidatoId AND NOT EXISTS (SELECT 1 FROM tbl_votos WHERE can_id = @candidatoId)", connection, transaction))
+                            {
+                                command.Parameters.AddWithValue("@candidatoId", candidatoId);
+                                command.ExecuteNonQuery();
+                            }
+
+                            transaction.Commit();
+                        }
+                        catch (Exception ex)
+                        {
+                            transaction.Rollback();
+                            throw new Exception("Error al eliminar partido y candidato", ex);
+                        }
+                    }
+                }
+            }
+        }
+        
     }
 }
