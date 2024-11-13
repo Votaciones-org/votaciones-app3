@@ -35,5 +35,27 @@ namespace Logic
         {
             return objPar.deletePartido(id);
         }
+        public DataSet showPartidoCandidatoDDL()
+        {
+            return objPar.SelectPartidoCandidatoDDL();
+        }
+
+        public bool savePartidoCandidatoDDL(string nombre, string apellido, string cedula, string opcion, string canNombre, string canApellido, string canPartido, string canFechaNacimiento, string canPropuesta)
+        {
+            objPar.InsertPartidoCandidatoDDL(nombre, apellido, cedula, opcion, canNombre, canApellido, canPartido, canFechaNacimiento, canPropuesta);
+            return true;
+        }
+
+        public bool updatePartidoCandidatoDDL(int partidoId, string nombre, string apellido, string cedula, string opcion, int candidatoId, string canNombre, string canApellido, string canPartido, string canFechaNacimiento, string canPropuesta)
+        {
+            objPar.UpdatePartidoCandidatoDDL(partidoId, nombre, apellido, cedula, opcion, candidatoId, canNombre, canApellido, canPartido, canFechaNacimiento, canPropuesta);
+            return true;
+        }
+
+        public bool deletePartidoCandidatoDDL(int partidoId, int candidatoId)
+        {
+            objPar.DeletePartidoCandidatoDDL(partidoId, candidatoId);
+            return true;
+        }
     }
 }

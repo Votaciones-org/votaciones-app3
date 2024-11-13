@@ -1,0 +1,172 @@
+[33mcommit 43a3a166c56e9922ca74d175fbebe30658a099ad[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mfeature-create-presentacion[m[33m, [m[1;31morigin/SCRUM-10-feature-create-update3[m[33m)[m
+Merge: 9936e05 47474ce
+Author: 92Gomez <45211923+92Gomez@users.noreply.github.com>
+Date:   Wed Nov 6 07:36:12 2024 -0500
+
+    Merge pull request #11 from Votaciones-org/SCRUM-10-feature-create-ddlA
+    
+    Actualizacion DDL
+
+[33mcommit 47474ceee304c327124dd77472036f3aaa851be6[m
+Author: 92Gomez <mr.diego92gomez@gmail.com>
+Date:   Wed Nov 6 07:33:08 2024 -0500
+
+    Actualizacion DDL
+
+[33mcommit 9936e05813d41856d381f65a5fcec96b69e80b27[m
+Merge: 63224d2 af245b9
+Author: 92Gomez <45211923+92Gomez@users.noreply.github.com>
+Date:   Wed Nov 6 07:12:58 2024 -0500
+
+    Merge pull request #10 from Votaciones-org/SCRUM-9-feature-create-ddlsA
+    
+    Actualizacion Capa Logic
+
+[33mcommit af245b9708aa13d8d0b3ecc6e13d6d6df40d229d[m
+Author: 92Gomez <mr.diego92gomez@gmail.com>
+Date:   Wed Nov 6 06:51:15 2024 -0500
+
+    Actualizacion Capa Logic
+
+[33mcommit 63224d24f21332e49713ff66af773d41d8da294d[m
+Merge: 8948fe5 908a551
+Author: 92Gomez <45211923+92Gomez@users.noreply.github.com>
+Date:   Tue Oct 29 23:50:50 2024 -0500
+
+    Merge pull request #9 from Votaciones-org/revert-8-SCRUM-9-feature-create-ddl2
+    
+    "Subiendo Procedimientos DDL"
+
+[33mcommit 908a551a8408b048d29b6563e256d1b443394b20[m
+Author: 92Gomez <45211923+92Gomez@users.noreply.github.com>
+Date:   Tue Oct 29 23:47:57 2024 -0500
+
+    Revert "Subiendo Procedimientos DDL"
+
+[33mcommit 8948fe59dd1be0a3cdb95289af3e13028d051659[m
+Merge: 8868337 bdeebad
+Author: 92Gomez <45211923+92Gomez@users.noreply.github.com>
+Date:   Tue Oct 29 22:19:14 2024 -0500
+
+    Merge pull request #8 from Votaciones-org/SCRUM-9-feature-create-ddl2
+    
+    Subiendo Procedimientos DDL
+
+[33mcommit bdeebad1792f0c9559554ee9da5f2afff49d6d87[m
+Author: 92Gomez <mr.diego92gomez@gmail.com>
+Date:   Tue Oct 29 22:16:56 2024 -0500
+
+    Subiendo Procedimientos DDL
+
+[33mcommit 8868337ccfe0f88065924ed32eb33fc9123e078b[m[33m ([m[1;32mdevelop[m[33m)[m
+Merge: 300ec84 9cc0934
+Author: Juan esteban molano <juanestebanmolanog@gmail.com>
+Date:   Tue Oct 29 22:15:47 2024 -0500
+
+    ddl juan molano
+
+[33mcommit 300ec8475e1f8835cfdd833baab85b4460b202f9[m
+Author: Juan esteban molano <juanestebanmolanog@gmail.com>
+Date:   Tue Oct 29 22:10:48 2024 -0500
+
+    subiendo ddl visual juan molano
+
+[33mcommit 9cc09343b2dea2c78f8895ab9a9e349672bc826b[m
+Merge: e972968 c14e758
+Author: 92Gomez <45211923+92Gomez@users.noreply.github.com>
+Date:   Tue Oct 29 20:17:15 2024 -0500
+
+    Merge pull request #7 from Votaciones-org/SCRUM-9-feature-create-update1
+    
+    Actualización corregida capa Logic
+
+[33mcommit c14e7586f56a1c55e40d9e0360631d8056202d08[m
+Author: 92Gomez <mr.diego92gomez@gmail.com>
+Date:   Tue Oct 29 20:15:12 2024 -0500
+
+    Actualizacion corregida capa Logic
+
+[33mcommit 1d45333ca880b56e605026742f11e63a48f1b93f[m
+Author: 92Gomez <mr.diego92gomez@gmail.com>
+Date:   Tue Oct 29 19:43:21 2024 -0500
+
+    Actualizacion corregida capa Logic
+
+[33mcommit e97296817c3564c5843a19fccde7e91d25af7e76[m
+Author: 92Gomez <mr.diego92gomez@gmail.com>
+Date:   Tue Oct 29 15:48:24 2024 -0500
+
+    Actualizacion capa Logic
+
+[33mcommit 2273c021d693afbe6039dec32e10d74728088f9b[m
+Merge: 350b2c6 4960900
+Author: juanmolanomg <juanestebanmolanog@gmail.com>
+Date:   Tue Oct 29 15:03:51 2024 -0500
+
+    Merge pull request #4 from Votaciones-org/SCRUM-10-feature-create-update
+    
+    Scrum 10 feature create update
+
+[33mcommit 4960900f1a7e6f5ef2ecc97d9dc2f2e4964a7059[m[33m ([m[1;31morigin/SCRUM-10-feature-create-update[m[33m, [m[1;32mSCRUM-10-feature-create-update[m[33m)[m
+Merge: b5c9667 4eec407
+Author: Juan esteban molano <juanestebanmolanog@gmail.com>
+Date:   Tue Oct 29 15:02:53 2024 -0500
+
+    Merge branch 'SCRUM-10-feature-create-update' of https://github.com/Votaciones-org/votaciones-app3 into SCRUM-10-feature-create-update
+
+[33mcommit b5c9667f4a911049132b6203682cc8ef31045e8f[m
+Author: Juan esteban molano <juanestebanmolanog@gmail.com>
+Date:   Tue Oct 29 15:00:20 2024 -0500
+
+    subiendo DDL juan esteban
+
+[33mcommit 350b2c6a53a07bc65a3f498ce4059bb20c7d03e0[m
+Merge: 57be82a 4eec407
+Author: 92Gomez <45211923+92Gomez@users.noreply.github.com>
+Date:   Mon Oct 28 18:02:31 2024 -0500
+
+    Merge pull request #3 from Votaciones-org/SCRUM-10-feature-create-update
+    
+    Actualizacion capa Logic
+
+[33mcommit 4eec40751b7040c9ba07d3896cb2d649d8d330f3[m
+Author: 92Gomez <mr.diego92gomez@gmail.com>
+Date:   Mon Oct 28 17:40:20 2024 -0500
+
+    Actualizacion capa Logic
+
+[33mcommit 57be82a9685a9cd6c01533dd3a52aaac872ac0e1[m
+Merge: f0afe2b 2d3ae62
+Author: 92Gomez <45211923+92Gomez@users.noreply.github.com>
+Date:   Mon Oct 28 16:48:06 2024 -0500
+
+    Merge pull request #2 from Votaciones-org/SCRUM-10-feature-create-update
+    
+    Se crea funcionalidades capa Logic
+
+[33mcommit 2d3ae623d4d3cc48364682b03096c6a03796558e[m
+Author: 92Gomez <mr.diego92gomez@gmail.com>
+Date:   Mon Oct 28 16:44:26 2024 -0500
+
+    Se crea funcionalidades capa Logic
+
+[33mcommit f0afe2b87e0ba2c1f133ecc66354ea4469ae1087[m
+Merge: 689f158 7608524
+Author: juanmolanomg <juanestebanmolanog@gmail.com>
+Date:   Mon Oct 28 14:36:58 2024 -0500
+
+    Merge pull request #1 from Votaciones-org/SCRUM-11-feature-create-update2
+    
+    subiendo proyecto base log juan esteban
+
+[33mcommit 76085240a69c4da02accd78eb02779517073911d[m[33m ([m[1;31morigin/SCRUM-11-feature-create-update2[m[33m, [m[1;32mSCRUM-11-feature-create-update2[m[33m)[m
+Author: Juan esteban molano <juanestebanmolanog@gmail.com>
+Date:   Mon Oct 28 14:36:10 2024 -0500
+
+    subiendo proyecto base log juan esteban
+
+[33mcommit 689f1586eae201e04bab2d04c0e9f535efd450b8[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/feature-proyecto[m[33m, [m[1;31morigin/SCRUM-9-feature-create-ddl[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmain[m[33m, [m[1;32mfeature-proyecto[m[33m)[m
+Author: 92Gomez <45211923+92Gomez@users.noreply.github.com>
+Date:   Sun Oct 27 14:12:37 2024 -0500
+
+    Initial commit
