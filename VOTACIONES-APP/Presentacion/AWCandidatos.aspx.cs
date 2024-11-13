@@ -6,19 +6,6 @@ using System.Data;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-using System;
-using Logic;
-using System.Data;
-
-using System;
-using Logic;
-using System.Data;
-
-using System;
-using Logic;
-using System.Data;
-
-
 namespace Presentation
 {
     public partial class WFCandidatos : System.Web.UI.Page
