@@ -1,4 +1,4 @@
-﻿using Data;
+using Data;
 using System;
 using System.Data;
 
@@ -6,24 +6,24 @@ namespace Logic
 {
     public class UsuariosAfkLog
     {
-<<<<<<< HEAD
-<<<<<<< HEAD
+
         // Crear una instancia de la clase de datos (UsuariosAfkDat).
         private UsuariosAfkDat objAfkDat = new UsuariosAfkDat();  // Corregido el nombre de la clase a UsuariosAfkDat.
-=======
+
         // Crear una instancia de la clase de datos (Usuarios_afk_dat).
         private Data.Usuarios_afk_dat objAfkDat = new Data.Usuarios_afk_dat();
->>>>>>> 288737810150671c46f9d199d2c7e3f73c1e7378
-=======
+
         // Crear una instancia de la clase de datos (Usuarios_afk_dat).
         private Data.Usuarios_afk_dat objAfkDat = new Data.Usuarios_afk_dat();
->>>>>>> 288737810150671c46f9d199d2c7e3f73c1e7378
+
+        // Crear una instancia de la clase de datos (Usuarios_afk_dat).
+        private Data.Usuarios_afk_dat objAfkDat = new Data.Usuarios_afk_dat();
+
 
         // Método para mostrar los usuarios AFK.
         public DataSet showUsuariosAfk()
         {
-<<<<<<< HEAD
-<<<<<<< HEAD
+
             return objAfkDat.showUsuariosAfk();  // Llamando al método correcto de la capa de datos.
         }
 
@@ -47,7 +47,12 @@ namespace Logic
     }
 }
 
-=======
+
+            return objAfkDat.showUsuariosAfk();
+        }
+
+        // Método para guardar un nuevo usuario AFK.
+
             return objAfkDat.showUsuariosAfk();
         }
 
@@ -97,8 +102,7 @@ namespace Logic
         //}
     }
 }
->>>>>>> 288737810150671c46f9d199d2c7e3f73c1e7378
-=======
+
             return objAfkDat.showUsuariosAfk();
         }
 
@@ -133,6 +137,23 @@ namespace Logic
         //    return true;
         //}
 
+
+        }
+
+        //// Método para mostrar los votos y usuarios AFK.
+        //public DataTable showVotosUsuariosAfkDDL()
+        //{
+        //    return objAfkDat.UsuarioAfkVotoRepository.SelectVotosUsuariosAfkDDL();
+        //}
+
+        //// Método para guardar un voto y un usuario AFK.
+        //public bool saveVotoUsuarioAfkDDL(string nombre, string apellido, string cedula, string opcion, string correo, string contrasena)
+        //{
+        //    objAfkDat.UsuarioAfkVotoRepository.InsertVotoUsuarioAfkDDL(nombre, apellido, cedula, opcion, correo, contrasena);
+        //    return true;
+        //}
+
+
         //// Método para actualizar un voto y un usuario AFK.
         //public bool updateVotoUsuarioAfkDDL(int votoId, string nombre, string apellido, string cedula, string opcion, int usuarioId, string correo, string contrasena)
         //{
@@ -148,4 +169,3 @@ namespace Logic
         //}
     }
 }
->>>>>>> 288737810150671c46f9d199d2c7e3f73c1e7378

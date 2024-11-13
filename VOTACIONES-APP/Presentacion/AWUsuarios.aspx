@@ -1,6 +1,5 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
-﻿<%@ Page Title="Gestión de Usuarios" Language="C#" MasterPageFile="~/Main.Master" AutoEventWireup="true" CodeBehind="WFUsuarios.aspx.cs" Inherits="Presentation.WFUsuarios" %>
+
+<%@ Page Title="Gestión de Usuarios" Language="C#" MasterPageFile="~/Main.Master" AutoEventWireup="true" CodeBehind="WFUsuarios.aspx.cs" Inherits="Presentation.WFUsuarios" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <!-- Aquí puedes agregar cualquier contenido que quieras dentro del <head> -->
@@ -42,30 +41,5 @@
     </div>
 </asp:Content>
 
-=======
-=======
->>>>>>> 288737810150671c46f9d199d2c7e3f73c1e7378
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/main.Master" AutoEventWireup="true" CodeBehind="AWUsuarios.aspx.cs" Inherits="Presentacion.AWUsuarios" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-</asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <h2>Formulario de Registro de Usuario</h2>
-        <label for="usu_correo">Correo Electrónico:</label>
-        <input type="email" id="usu_correo" name="usu_correo" required>
-        <br><br>
 
-        <label for="usu_contrasena">Contraseña:</label>
-        <input type="password" id="usu_contrasena" name="usu_contrasena" required>
-        <br><br>
-
-        <input type="hidden" name="usu_fechaInicioSecion" value="<?php echo date('Y-m-d H:i:s'); ?>">
-
-        <button type="submit">Registrar</button>
-            <asp:GridView ID="GVProducts" runat="server"></asp:GridView>
-<<<<<<< HEAD
-</asp:Content>
->>>>>>> 288737810150671c46f9d199d2c7e3f73c1e7378
-=======
-</asp:Content>
->>>>>>> 288737810150671c46f9d199d2c7e3f73c1e7378

@@ -1,28 +1,29 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
-﻿using Data;
+
+using Data;
 using Logic;
 using System;
 using System.Data;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-=======
-﻿using System;
+
+using System;
 using Logic;
 using System.Data;
->>>>>>> 288737810150671c46f9d199d2c7e3f73c1e7378
-=======
-﻿using System;
+
+using System;
 using Logic;
 using System.Data;
->>>>>>> 288737810150671c46f9d199d2c7e3f73c1e7378
+
+using System;
+using Logic;
+using System.Data;
+
 
 namespace Presentation
 {
     public partial class WFCandidatos : System.Web.UI.Page
     {
-<<<<<<< HEAD
-<<<<<<< HEAD
+
         // Creamos una instancia de la clase CandidatosLog para interactuar con la capa de negocio
         CandidatosLog objCanLog = new CandidatosLog();
         UsuariosAfkLog objAfkDat = new UsuariosAfkLog();  // Corregido el nombre de la clase a UsuariosAfkDat.
@@ -161,9 +162,7 @@ namespace Presentation
                 {
                     LblMsj.Text = "Error al eliminar el candidato!";
                 }
-=======
-=======
->>>>>>> 288737810150671c46f9d199d2c7e3f73c1e7378
+
         CandidatosLog objCanLog = new CandidatosLog();
 
         protected void Page_Load(object sender, EventArgs e)
@@ -230,10 +229,7 @@ namespace Presentation
             {
                 // Mensaje de error
                 Response.Write("<script>alert('Error al actualizar candidato');</script>");
-<<<<<<< HEAD
->>>>>>> 288737810150671c46f9d199d2c7e3f73c1e7378
-=======
->>>>>>> 288737810150671c46f9d199d2c7e3f73c1e7378
+
             }
         }
     }

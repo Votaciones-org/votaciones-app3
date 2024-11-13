@@ -1,6 +1,5 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
-﻿<%@ Page Title="Gestión de Candidatos" Language="C#" MasterPageFile="~/Main.Master" AutoEventWireup="true" CodeBehind="WFCandidatos.aspx.cs" Inherits="Presentation.WFCandidatos" %>
+
+<%@ Page Title="Gestión de Candidatos" Language="C#" MasterPageFile="~/Main.Master" AutoEventWireup="true" CodeBehind="WFCandidatos.aspx.cs" Inherits="Presentation.WFCandidatos" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <!-- Aquí puedes agregar cualquier contenido que quieras dentro del <head> -->
@@ -56,10 +55,8 @@
 </asp:Content>
 
 
-=======
-=======
->>>>>>> 288737810150671c46f9d199d2c7e3f73c1e7378
-﻿<%@ Page Title="Gestión de Candidatos" Language="C#" MasterPageFile="~/main.Master" AutoEventWireup="true" CodeBehind="AWCandidatos.aspx.cs" Inherits="Presentation.WFCandidatos" %>
+
+<%@ Page Title="Gestión de Candidatos" Language="C#" MasterPageFile="~/main.Master" AutoEventWireup="true" CodeBehind="AWCandidatos.aspx.cs" Inherits="Presentation.WFCandidatos" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <title>Registro y Gestión de Candidatos</title>
@@ -96,7 +93,4 @@
         </div>
     </div>
 </asp:Content>
-<<<<<<< HEAD
->>>>>>> 288737810150671c46f9d199d2c7e3f73c1e7378
-=======
->>>>>>> 288737810150671c46f9d199d2c7e3f73c1e7378
+

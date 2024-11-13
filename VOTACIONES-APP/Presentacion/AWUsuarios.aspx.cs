@@ -1,6 +1,5 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
-﻿using Data;
+
+using Data;
 using Logic;
 using System;
 using System.Data;
@@ -116,28 +115,6 @@ namespace Presentation
         }
     }
 }
-=======
-=======
->>>>>>> 288737810150671c46f9d199d2c7e3f73c1e7378
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 
-namespace Presentacion
-{
-    public partial class AWUsuarios : System.Web.UI.Page
-    {
-        protected void Page_Load(object sender, EventArgs e)
-        {
 
-        }
-    }
-<<<<<<< HEAD
-}
->>>>>>> 288737810150671c46f9d199d2c7e3f73c1e7378
-=======
-}
->>>>>>> 288737810150671c46f9d199d2c7e3f73c1e7378
+

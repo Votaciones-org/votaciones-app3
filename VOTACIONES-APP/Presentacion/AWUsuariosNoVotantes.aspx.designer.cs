@@ -7,8 +7,7 @@
 // </generado automáticamente>
 //------------------------------------------------------------------------------
 
-<<<<<<< HEAD
-<<<<<<< HEAD
+
 namespace Presentation
 {
 
@@ -18,9 +17,7 @@ namespace Presentation
 
         /// <summary>
         /// Control HFIdUsuario.
-=======
-=======
->>>>>>> 288737810150671c46f9d199d2c7e3f73c1e7378
+
 namespace Presentacion
 {
 
@@ -30,17 +27,13 @@ namespace Presentacion
 
         /// <summary>
         /// Control GVProducts.
-<<<<<<< HEAD
->>>>>>> 288737810150671c46f9d199d2c7e3f73c1e7378
-=======
->>>>>>> 288737810150671c46f9d199d2c7e3f73c1e7378
+
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-<<<<<<< HEAD
-<<<<<<< HEAD
+
         protected global::System.Web.UI.WebControls.HiddenField HFIdUsuario;
 
         /// <summary>
@@ -72,11 +65,13 @@ namespace Presentacion
 
         /// <summary>
         /// Control no_apellido.
+
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
+
         protected global::System.Web.UI.WebControls.TextBox no_apellido;
 
         /// <summary>
@@ -150,11 +145,12 @@ namespace Presentacion
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView GVUsuariosNoVotantes;
-=======
+
         protected global::System.Web.UI.WebControls.GridView GVProducts;
->>>>>>> 288737810150671c46f9d199d2c7e3f73c1e7378
-=======
+
         protected global::System.Web.UI.WebControls.GridView GVProducts;
->>>>>>> 288737810150671c46f9d199d2c7e3f73c1e7378
+
+        protected global::System.Web.UI.WebControls.GridView GVProducts;
+
     }
 }

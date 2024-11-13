@@ -1,4 +1,4 @@
-﻿//------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 // <generado automáticamente>
 //     Este código fue generado por una herramienta.
 //
@@ -7,8 +7,7 @@
 // </generado automáticamente>
 //------------------------------------------------------------------------------
 
-<<<<<<< HEAD
-<<<<<<< HEAD
+
 namespace Presentation
 {
 
@@ -18,9 +17,7 @@ namespace Presentation
 
         /// <summary>
         /// Control HfUsuarioId.
-=======
-=======
->>>>>>> 288737810150671c46f9d199d2c7e3f73c1e7378
+
 namespace Presentacion
 {
 
@@ -30,17 +27,12 @@ namespace Presentacion
 
         /// <summary>
         /// Control GVProducts.
-<<<<<<< HEAD
->>>>>>> 288737810150671c46f9d199d2c7e3f73c1e7378
-=======
->>>>>>> 288737810150671c46f9d199d2c7e3f73c1e7378
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-<<<<<<< HEAD
-<<<<<<< HEAD
+
         protected global::System.Web.UI.WebControls.HiddenField HfUsuarioId;
 
         /// <summary>
@@ -63,11 +55,13 @@ namespace Presentacion
 
         /// <summary>
         /// Control Label2.
+
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
+
         protected global::System.Web.UI.WebControls.Label Label2;
 
         /// <summary>
@@ -114,11 +108,12 @@ namespace Presentacion
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView GVUsuarios;
-=======
+
         protected global::System.Web.UI.WebControls.GridView GVProducts;
->>>>>>> 288737810150671c46f9d199d2c7e3f73c1e7378
-=======
+
         protected global::System.Web.UI.WebControls.GridView GVProducts;
->>>>>>> 288737810150671c46f9d199d2c7e3f73c1e7378
+
+        protected global::System.Web.UI.WebControls.GridView GVProducts;
+
     }
 }

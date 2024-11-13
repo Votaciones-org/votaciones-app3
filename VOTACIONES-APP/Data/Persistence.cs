@@ -30,11 +30,7 @@ namespace Data
         public void closeConnection()
         {
             _connection.Close();
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
->>>>>>> 288737810150671c46f9d199d2c7e3f73c1e7378
+
         }
 
         public DataSet SelectPartidoCandidatoDDL()
@@ -55,7 +51,7 @@ namespace Data
         public void DeletePartidoCandidatoDDL(int votoId, int candidatoId)
         {
             throw new NotImplementedException();
->>>>>>> 288737810150671c46f9d199d2c7e3f73c1e7378
+
         }
     }
 }
