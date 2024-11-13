@@ -10,7 +10,15 @@ namespace Logic
     public class UsuariosLog
     {
         // Crear la instancia de Usuarios_dat (en lugar de UsuariosLog).
+
+        private UsuarioDat objusu = new UsuarioDat(); // Crear la instancia correcta de la clase que maneja los datos
+
         private Usuarios_dat objusu = new Usuarios_dat(); // Crear la instancia correcta de la clase que maneja los datos
+
+        private Usuarios_dat objusu = new Usuarios_dat(); // Crear la instancia correcta de la clase que maneja los datos
+
+        private Usuarios_dat objusu = new Usuarios_dat(); // Crear la instancia correcta de la clase que maneja los datos
+
 
         // Método para mostrar todos los usuarios
         public DataSet showUsuarios()

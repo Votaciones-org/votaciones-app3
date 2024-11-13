@@ -30,6 +30,7 @@ namespace Data
         public void closeConnection()
         {
             _connection.Close();
+
         }
 
         public DataSet SelectPartidoCandidatoDDL()
@@ -50,6 +51,7 @@ namespace Data
         public void DeletePartidoCandidatoDDL(int votoId, int candidatoId)
         {
             throw new NotImplementedException();
+
         }
     }
 }
