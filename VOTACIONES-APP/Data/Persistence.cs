@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Data;
 using System.Data.SqlClient ;
 using System.Linq;
 using System.Web;
@@ -52,6 +53,81 @@ namespace Data
         {
             throw new NotImplementedException();
 
+        }
+
+        public DataSet showVotes()
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool saveVote(string nombre, string apellido, string cedula, string opcion)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool updateVote(int id, string nombre, string apellido, string cedula, string opcion)
+        {
+            throw new NotImplementedException();
+        }
+
+        public DataSet showPartidos()
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool savePartido(string nombrePartido, string descripcion)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool updatePartido(int id, string nombrePartido, string descripcion)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool deletePartido(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public DataSet showEstadoVida()
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool saveEstadoVida(string nombre, string apellido, string cedula, string estado, string fechaDefuncion)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool updateEstadoVida(int id, string nombre, string apellido, string cedula, string estado, string fechaDefuncion)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool deleteEstadoVida(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public DataSet showCandidatosEliminados()
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool saveCandidatoEliminado(string nombre, string apellido, string partido, string fechaNacimiento, string propuesta)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool updateCandidatoEliminado(int id, string nombre, string apellido, string partido, string fechaNacimiento, string propuesta)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool deleteCandidatoEliminado(int id)
+        {
+            throw new NotImplementedException();
         }
     }
 }
