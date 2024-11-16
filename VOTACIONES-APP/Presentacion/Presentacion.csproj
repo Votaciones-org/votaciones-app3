@@ -125,8 +125,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+<<<<<<< HEAD
+<<<<<<< HEAD:VOTACIONES-APP/Presentacion/Presentacion.csproj
 <<<<<<< HEAD:VOTACIONES-APP/Presentacion/Presentacion.csproj
 =======
+=======
+>>>>>>> develop:VOTACIONES-APP/Presentacion/Presentation.csproj
 
     <Content Include="AWCandidatos_eliminados.aspx" />
     <Content Include="AWEstado_vida.aspx" />
@@ -136,7 +140,12 @@
     <Content Include="AWUsuariosAFK.aspx" />
     <Content Include="AWUsuariosNoVotantes.aspx" />
     <Content Include="AWVotos.aspx" />
+<<<<<<< HEAD:VOTACIONES-APP/Presentacion/Presentacion.csproj
 >>>>>>> 781d1d1e20bbf272ac034be90d2111b2c276fe5e:VOTACIONES-APP/Presentacion/Presentation.csproj
+=======
+>>>>>>> develop:VOTACIONES-APP/Presentacion/Presentation.csproj
+=======
+>>>>>>> 18a82d04fdbea51d5067a5f63b8d4df9beb62033
     <Content Include="Inicio.aspx" />
     <Content Include="Web.config" />
     <Content Include="WFCandidatos.aspx" />
@@ -145,8 +154,12 @@
     <Content Include="WFUsuariosNoVotantes.aspx" />
   </ItemGroup>
   <ItemGroup>
+<<<<<<< HEAD
+<<<<<<< HEAD:VOTACIONES-APP/Presentacion/Presentacion.csproj
 <<<<<<< HEAD:VOTACIONES-APP/Presentacion/Presentacion.csproj
 =======
+=======
+>>>>>>> develop:VOTACIONES-APP/Presentacion/Presentation.csproj
     <Compile Include="AWCandidatos_eliminados.aspx.cs">
       <DependentUpon>AWCandidatos_eliminados.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -196,7 +209,12 @@
     <Compile Include="AWVotos.aspx.designer.cs">
       <DependentUpon>AWVotos.aspx</DependentUpon>
     </Compile>
+<<<<<<< HEAD:VOTACIONES-APP/Presentacion/Presentacion.csproj
 >>>>>>> 781d1d1e20bbf272ac034be90d2111b2c276fe5e:VOTACIONES-APP/Presentacion/Presentation.csproj
+=======
+>>>>>>> develop:VOTACIONES-APP/Presentacion/Presentation.csproj
+=======
+>>>>>>> 18a82d04fdbea51d5067a5f63b8d4df9beb62033
     <Compile Include="Inicio.aspx.cs">
       <DependentUpon>Inicio.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
