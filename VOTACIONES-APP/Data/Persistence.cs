@@ -2,7 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Configuration;
-using System.Data.SqlClient ;
 using System.Linq;
 using System.Web;
 
@@ -10,48 +9,39 @@ namespace Data
 {
     public class Persistence
     {
+        // MySqlConnection es una clase que representa una conexión a una base de datos MySQL.
+        // Aquí se declara una variable privada _connection para almacenar la conexión.
+        // La cadena de conexión se obtiene de la configuración (app.config o web.config) utilizando ConfigurationManager. 
         MySqlConnection _connection = new MySqlConnection(ConfigurationManager.ConnectionStrings["Conn"].ConnectionString);
 
+        // Método para abrir la conexión a la base de datos.
+        // Devuelve un objeto MySqlConnection que representa la conexión establecida.
         public MySqlConnection openConnection()
         {
+
             try
             {
+                // Abre la conexión.
                 _connection.Open();
-                return _connection;
+                return _connection;// Devuelve el objeto MySqlConnection.
             }
-            catch (Exception ex)
+            catch (Exception e)
             {
-                // Manejo de excepciones más detallado
-                Console.WriteLine("Error al abrir la conexión: " + ex.Message);
-                return null;
+                // En caso de error, se captura la excepción y se muestra la información de la excepción en la consola.
+                e.ToString();
+                return null;// Devuelve null para indicar que la conexión no se pudo abrir.
             }
         }
 
+        // Método para cerrar la conexión a la base de datos.
         public void closeConnection()
         {
-            _connection.Close();
-
+            _connection.Close();// Cierra la conexión.
         }
 
-        public DataSet SelectPartidoCandidatoDDL()
+        internal MySqlConnection OpenConnection()
         {
             throw new NotImplementedException();
-        }
-
-        public void InsertPartidoCandidatoDDL(string nombre, string apellido, string cedula, string opcion, string canNombre, string canApellido, string canPartido, string canFechaNacimiento, string canPropuesta)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void UpdatePartidoCandidatoDDL(int votoId, string nombre, string apellido, string cedula, string opcion, int candidatoId, string canNombre, string canApellido, string canPartido, string canFechaNacimiento, string canPropuesta)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void DeletePartidoCandidatoDDL(int votoId, int candidatoId)
-        {
-            throw new NotImplementedException();
-
         }
     }
 }

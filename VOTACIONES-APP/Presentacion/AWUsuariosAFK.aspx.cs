@@ -1,4 +1,3 @@
-
 using Data;
 using Logic;
 using System;
@@ -10,11 +9,11 @@ namespace Presentation
 {
     public partial class AWUsuariosAFK : System.Web.UI.Page
     {
-        // Creamos una instancia de la clase UsuariosAfkLog para interactuar con la capa de negocio
+        // Instancias de las clases de la capa de negocio
         UsuariosAfkLog objAfkLog = new UsuariosAfkLog();
-        UsuariosLog objusu = new UsuariosLog();
         CandidatosLog objCanLog = new CandidatosLog();
-        UsuariosAfkLog objAfkDat = new UsuariosAfkLog();  // Corregido el nombre de la clase a UsuariosAfkDat.
+        UsuariosAfkLog objAfkDat = new UsuariosAfkLog();
+        UsuariosLog objusu = new UsuariosLog();
         Usuarios_No_votantesLog objNO = new Usuarios_No_votantesLog();
         private int _idUsuario;
         private string _correo, _contrasena;
@@ -23,9 +22,9 @@ namespace Presentation
         // Cargar la página por primera vez
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!Page.IsPostBack)
+            if (!IsPostBack)
             {
-                showUsuariosAfk(); // Método para cargar todos los usuarios AFK
+                showUsuariosAfk(); // Cargar los usuarios AFK en el GridView
             }
         }
 
@@ -34,24 +33,22 @@ namespace Presentation
         {
             try
             {
-                // Obtenemos los usuarios AFK desde la capa de negocio
+                // Obtener los usuarios AFK desde la capa de negocio
                 DataSet ds = objAfkLog.showUsuariosAfk();
 
                 if (ds != null && ds.Tables.Count > 0)
                 {
-                    // Si hay datos, los asignamos al GridView
-                    GVUsuariosAFK.DataSource = ds.Tables[0];  // Usamos la primera tabla del DataSet
+                    // Asignar la data al GridView
+                    GVUsuariosAFK.DataSource = ds.Tables[0];
                     GVUsuariosAFK.DataBind();
                 }
                 else
                 {
-                    // Si no hay datos, mostramos un mensaje
                     LblMsj.Text = "No se encontraron usuarios AFK.";
                 }
             }
             catch (Exception ex)
             {
-                // Capturamos cualquier error y lo mostramos
                 LblMsj.Text = "Error al cargar los usuarios AFK: " + ex.Message;
             }
         }
@@ -69,7 +66,7 @@ namespace Presentation
             _correo = TBCorreo.Text;
             _contrasena = TBContrasena.Text;
 
-            // Llamada a la función de la capa de negocio para guardar el usuario AFK
+            // Llamada a la capa de negocio para guardar el usuario AFK
             executed = objAfkLog.saveUsuariosAfk(_correo, _contrasena);
 
             if (executed)
@@ -91,7 +88,7 @@ namespace Presentation
             _correo = TBCorreo.Text;
             _contrasena = TBContrasena.Text;
 
-            // Llamada a la función de la capa de negocio para actualizar el usuario AFK
+            // Llamada a la capa de negocio para actualizar el usuario AFK
             executed = objAfkLog.updateUsuariosAfk(_idUsuario, _correo, _contrasena);
 
             if (executed)
@@ -106,14 +103,18 @@ namespace Presentation
             }
         }
 
-        // Evento para seleccionar una fila del GridView y cargar sus datos en los campos
+        // Evento para seleccionar un usuario del GridView y cargar sus datos
         protected void GVUsuariosAFK_SelectedIndexChanged(object sender, EventArgs e)
         {
-            // Asignar el ID del usuario AFK a un campo oculto (HiddenField)
-            HfUsuarioId.Value = GVUsuariosAFK.SelectedRow.Cells[0].Text;
-            // Asignar los valores de las celdas seleccionadas a los campos de texto
-            TBCorreo.Text = GVUsuariosAFK.SelectedRow.Cells[1].Text;
-            TBContrasena.Text = GVUsuariosAFK.SelectedRow.Cells[2].Text;
+            // Asignar el ID y los valores del usuario seleccionado a los campos
+            GridViewRow row = GVUsuariosAFK.SelectedRow;
+            HfUsuarioId.Value = row.Cells[0].Text;
+            TBCorreo.Text = row.Cells[1].Text;
+            TBContrasena.Text = row.Cells[2].Text;
+
+            // Mostrar el botón de "Actualizar" y ocultar el de "Guardar"
+            BtnSave.Visible = false;
+            BtnUpdate.Visible = true;
         }
 
         // Evento para eliminar un usuario AFK
@@ -124,7 +125,7 @@ namespace Presentation
                 int rowIndex = Convert.ToInt32(e.CommandArgument);
                 _idUsuario = Convert.ToInt32(GVUsuariosAFK.DataKeys[rowIndex].Value);
 
-                // Llamada a la función de la capa de negocio para eliminar el usuario AFK
+                // Llamada a la capa de negocio para eliminar el usuario AFK
                 executed = objAfkLog.deleteUsuariosAfk(_idUsuario);
 
                 if (executed)

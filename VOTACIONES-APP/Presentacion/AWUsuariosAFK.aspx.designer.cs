@@ -7,15 +7,7 @@
 // </generado automáticamente>
 //------------------------------------------------------------------------------
 
-
 namespace Presentation
-
-namespace Presentacion
-
-namespace Presentacion
-
-namespace Presentacion
-
 {
 
 
@@ -23,19 +15,12 @@ namespace Presentacion
     {
 
         /// <summary>
-
         /// Control HfUsuarioId.
-
-        /// Control GVProducts.
-
-        /// Control GVProducts.
-
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-
         protected global::System.Web.UI.WebControls.HiddenField HfUsuarioId;
 
         /// <summary>
@@ -67,15 +52,11 @@ namespace Presentacion
 
         /// <summary>
         /// Control TBContrasena.
-
-        /// Control GVProducts.
-
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-
         protected global::System.Web.UI.WebControls.TextBox TBContrasena;
 
         /// <summary>
@@ -113,12 +94,5 @@ namespace Presentacion
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView GVUsuariosAFK;
-
-        protected global::System.Web.UI.WebControls.GridView GVProducts;
-
-        protected global::System.Web.UI.WebControls.GridView GVProducts;
-
-        protected global::System.Web.UI.WebControls.GridView GVProducts;
-
     }
 }

@@ -7,7 +7,6 @@
 // </generado automáticamente>
 //------------------------------------------------------------------------------
 
-
 namespace Presentation
 {
 
@@ -17,23 +16,11 @@ namespace Presentation
 
         /// <summary>
         /// Control HFIdUsuario.
-
-namespace Presentacion
-{
-
-
-    public partial class AWUsuariosNoVotantes
-    {
-
-        /// <summary>
-        /// Control GVProducts.
-
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-
         protected global::System.Web.UI.WebControls.HiddenField HFIdUsuario;
 
         /// <summary>
@@ -65,13 +52,11 @@ namespace Presentacion
 
         /// <summary>
         /// Control no_apellido.
-
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-
         protected global::System.Web.UI.WebControls.TextBox no_apellido;
 
         /// <summary>
@@ -145,12 +130,5 @@ namespace Presentacion
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView GVUsuariosNoVotantes;
-
-        protected global::System.Web.UI.WebControls.GridView GVProducts;
-
-        protected global::System.Web.UI.WebControls.GridView GVProducts;
-
-        protected global::System.Web.UI.WebControls.GridView GVProducts;
-
     }
 }

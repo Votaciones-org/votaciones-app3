@@ -12,29 +12,29 @@
 
         <!-- Campos para ingresar la información del usuario no votante -->
         <asp:Label ID="Label1" runat="server" Text="Ingrese el nombre del usuario"></asp:Label>
-        <asp:TextBox ID="no_nombre" runat="server"></asp:TextBox>
+        <asp:TextBox ID="no_nombre" runat="server" />
         <br />
 
         <asp:Label ID="Label2" runat="server" Text="Ingrese el apellido del usuario"></asp:Label>
-        <asp:TextBox ID="no_apellido" runat="server"></asp:TextBox>
+        <asp:TextBox ID="no_apellido" runat="server" />
         <br />
 
         <asp:Label ID="Label3" runat="server" Text="Ingrese la cédula del usuario"></asp:Label>
-        <asp:TextBox ID="no_cedula" runat="server"></asp:TextBox>
+        <asp:TextBox ID="no_cedula" runat="server" />
         <br />
 
         <asp:Label ID="Label4" runat="server" Text="Ingrese la opción del usuario"></asp:Label>
-        <asp:TextBox ID="no_opcion" runat="server"></asp:TextBox>
+        <asp:TextBox ID="no_opcion" runat="server" />
         <br />
 
         <!-- Botones para guardar y actualizar -->
         <asp:Button ID="btnGuardar" runat="server" Text="Guardar" OnClick="btnGuardar_Click" />
-        <asp:Button ID="btnActualizar" runat="server" Text="Actualizar" OnClick="btnActualizar_Click" />
-        <asp:Label ID="LblMsj" runat="server" Text=""></asp:Label>
+        <asp:Button ID="btnActualizar" runat="server" Text="Actualizar" OnClick="btnActualizar_Click" Visible="false" />
+        <asp:Label ID="LblMsj" runat="server" Text="" ForeColor="Red" />
         <br />
 
         <!-- GridView para mostrar la lista de usuarios no votantes -->
-        <asp:GridView ID="GVUsuariosNoVotantes" runat="server" AutoGenerateColumns="False" OnSelectedIndexChanged="GVUsuariosNoVotantes_SelectedIndexChanged" OnRowCommand="GVUsuariosNoVotantes_RowCommand">
+        <asp:GridView ID="GVUsuariosNoVotantes" runat="server" AutoGenerateColumns="False" OnSelectedIndexChanged="GVUsuariosNoVotantes_SelectedIndexChanged" OnRowCommand="GVUsuariosNoVotantes_RowCommand" DataKeyNames="id_usuario">
             <Columns>
                 <asp:BoundField DataField="id_usuario" HeaderText="ID Usuario" SortExpression="id_usuario" />
                 <asp:BoundField DataField="nombre" HeaderText="Nombre" SortExpression="nombre" />
@@ -47,4 +47,5 @@
         </asp:GridView>
     </div>
 </asp:Content>
+
 

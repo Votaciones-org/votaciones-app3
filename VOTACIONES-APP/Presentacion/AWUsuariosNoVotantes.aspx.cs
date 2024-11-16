@@ -1,6 +1,5 @@
 using Data;
 using Logic;
-using Presentacion;
 using System;
 using System.Data;
 using System.Web.UI;
@@ -10,9 +9,12 @@ namespace Presentation
 {
     public partial class AWFUsuariosNoVotantes : System.Web.UI.Page
     {
-        // Creamos una instancia de la clase de lógica para interactuar con los usuarios no votantes
+        // Instancia de la clase de lógica para interactuar con los usuarios no votantes
         Usuarios_No_votantesLog objNOLog = new Usuarios_No_votantesLog();
-
+        CandidatosLog objCanLog = new CandidatosLog();
+        UsuariosAfkLog objAfkDat = new UsuariosAfkLog();
+        UsuariosLog objusu = new UsuariosLog();
+        Usuarios_No_votantesLog objNO = new Usuarios_No_votantesLog();
         private int _idUsuario;
         private string _nombre, _apellido, _cedula, _opcion;
         private bool executed = false;
@@ -20,9 +22,9 @@ namespace Presentation
         // Cargar la página por primera vez
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!Page.IsPostBack)
+            if (!IsPostBack)
             {
-                showUsuariosNoVotantes(); // Método para cargar todos los usuarios no votantes
+                showUsuariosNoVotantes(); // Mostrar los usuarios no votantes en el GridView
             }
         }
 
@@ -31,24 +33,22 @@ namespace Presentation
         {
             try
             {
-                // Obtenemos los usuarios no votantes desde la capa de negocio
+                // Obtener los usuarios no votantes desde la capa de negocio
                 DataSet ds = objNOLog.ShowUsuariosNoVotantes();
 
                 if (ds != null && ds.Tables.Count > 0)
                 {
-                    // Si hay datos, los asignamos al GridView
-                    GVUsuariosNoVotantes.DataSource = ds.Tables[0];  // Usamos la primera tabla del DataSet
+                    // Asignar los datos al GridView
+                    GVUsuariosNoVotantes.DataSource = ds.Tables[0];
                     GVUsuariosNoVotantes.DataBind();
                 }
                 else
                 {
-                    // Si no hay datos, mostramos un mensaje
                     LblMsj.Text = "No se encontraron usuarios no votantes.";
                 }
             }
             catch (Exception ex)
             {
-                // Capturamos cualquier error y lo mostramos
                 LblMsj.Text = "Error al cargar los usuarios: " + ex.Message;
             }
         }
@@ -70,7 +70,7 @@ namespace Presentation
             _cedula = no_cedula.Text;
             _opcion = no_opcion.Text;
 
-            // Llamada a la función de la capa de negocio para guardar el usuario
+            // Llamada a la capa de negocio para guardar el usuario
             executed = objNOLog.SaveUsuarioNoVotante(_nombre, _apellido, _cedula, _opcion);
 
             if (executed)
@@ -94,7 +94,7 @@ namespace Presentation
             _cedula = no_cedula.Text;
             _opcion = no_opcion.Text;
 
-            // Llamada a la función de la capa de negocio para actualizar el usuario
+            // Llamada a la capa de negocio para actualizar el usuario
             executed = objNOLog.UpdateUsuarioNoVotante(_idUsuario, _nombre, _apellido, _cedula, _opcion);
 
             if (executed)
@@ -119,6 +119,10 @@ namespace Presentation
             no_apellido.Text = GVUsuariosNoVotantes.SelectedRow.Cells[2].Text;
             no_cedula.Text = GVUsuariosNoVotantes.SelectedRow.Cells[3].Text;
             no_opcion.Text = GVUsuariosNoVotantes.SelectedRow.Cells[4].Text;
+
+            // Mostrar el botón de "Actualizar" y ocultar el de "Guardar"
+            btnGuardar.Visible = false;
+            btnActualizar.Visible = true;
         }
 
         // Evento para eliminar un usuario no votante
@@ -129,7 +133,7 @@ namespace Presentation
                 int rowIndex = Convert.ToInt32(e.CommandArgument);
                 _idUsuario = Convert.ToInt32(GVUsuariosNoVotantes.DataKeys[rowIndex].Value);
 
-                // Llamada a la función de la capa de negocio para eliminar el usuario
+                // Llamada a la capa de negocio para eliminar el usuario
                 executed = objNOLog.DeleteUsuarioNoVotante(_idUsuario);
 
                 if (executed)
