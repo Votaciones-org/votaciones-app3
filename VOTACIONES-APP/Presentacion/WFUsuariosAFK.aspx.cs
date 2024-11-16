@@ -1,13 +1,13 @@
-using Data;
+﻿using Data;
 using Logic;
 using System;
 using System.Data;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace Presentation
+namespace Presentacion3
 {
-    public partial class AWUsuariosAFK : System.Web.UI.Page
+    public partial class WFUsuariosAFK : System.Web.UI.Page
     {
         // Instancias de las clases de la capa de negocio
         UsuariosAfkLog objAfkLog = new UsuariosAfkLog();
@@ -18,6 +18,8 @@ namespace Presentation
         private int _idUsuario;
         private string _correo, _contrasena;
         private bool executed = false;
+
+        public static GridViewRow SelectedRow { get; private set; }
 
         // Cargar la página por primera vez
         protected void Page_Load(object sender, EventArgs e)
@@ -107,7 +109,7 @@ namespace Presentation
         protected void GVUsuariosAFK_SelectedIndexChanged(object sender, EventArgs e)
         {
             // Asignar el ID y los valores del usuario seleccionado a los campos
-            GridViewRow row = GVUsuariosAFK.SelectedRow;
+            GridViewRow row = WFUsuariosAFK.SelectedRow;
             HfUsuarioId.Value = row.Cells[0].Text;
             TBCorreo.Text = row.Cells[1].Text;
             TBContrasena.Text = row.Cells[2].Text;

@@ -1,20 +1,16 @@
-using Data;
+﻿using Data;
 using Logic;
 using System;
 using System.Data;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace Presentation
+namespace Presentacion4
 {
-    public partial class AWFUsuariosNoVotantes : System.Web.UI.Page
+    public partial class WFUsuariosNoVotantes : System.Web.UI.Page
     {
         // Instancia de la clase de lógica para interactuar con los usuarios no votantes
         Usuarios_No_votantesLog objNOLog = new Usuarios_No_votantesLog();
-        CandidatosLog objCanLog = new CandidatosLog();
-        UsuariosAfkLog objAfkDat = new UsuariosAfkLog();
-        UsuariosLog objusu = new UsuariosLog();
-        Usuarios_No_votantesLog objNO = new Usuarios_No_votantesLog();
         private int _idUsuario;
         private string _nombre, _apellido, _cedula, _opcion;
         private bool executed = false;
@@ -149,3 +145,4 @@ namespace Presentation
         }
     }
 }
+

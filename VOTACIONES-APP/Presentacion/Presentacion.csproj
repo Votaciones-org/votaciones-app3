@@ -1,4 +1,5 @@
-﻿<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
   <Import Project="..\packages\Microsoft.Net.Compilers.4.2.0\build\Microsoft.Net.Compilers.props" Condition="Exists('..\packages\Microsoft.Net.Compilers.4.2.0\build\Microsoft.Net.Compilers.props')" />
   <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
@@ -44,6 +45,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+
     <Reference Include="BouncyCastle.Cryptography, Version=2.0.0.0, Culture=neutral, PublicKeyToken=072edcf4a5328938, processorArchitecture=MSIL">
       <HintPath>..\packages\BouncyCastle.Cryptography.2.3.1\lib\net461\BouncyCastle.Cryptography.dll</HintPath>
     </Reference>
@@ -62,6 +64,7 @@
     <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=5.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.5.0.0\lib\net461\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
     </Reference>
+
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=4.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.4.1.0\lib\net472\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
@@ -122,14 +125,49 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+<<<<<<< HEAD:VOTACIONES-APP/Presentacion/Presentacion.csproj
+=======
+
+    <Content Include="AWCandidatos_eliminados.aspx" />
+    <Content Include="AWEstado_vida.aspx" />
+    <Content Include="AWPartidos.aspx" />
+
     <Content Include="AWUsuarios.aspx" />
     <Content Include="AWUsuariosAFK.aspx" />
     <Content Include="AWUsuariosNoVotantes.aspx" />
+    <Content Include="AWVotos.aspx" />
+>>>>>>> 781d1d1e20bbf272ac034be90d2111b2c276fe5e:VOTACIONES-APP/Presentacion/Presentation.csproj
     <Content Include="Inicio.aspx" />
     <Content Include="Web.config" />
-    <Content Include="AWCandidatos.aspx" />
+    <Content Include="WFCandidatos.aspx" />
+    <Content Include="WFUsuarios.aspx" />
+    <Content Include="WFUsuariosAFK.aspx" />
+    <Content Include="WFUsuariosNoVotantes.aspx" />
   </ItemGroup>
   <ItemGroup>
+<<<<<<< HEAD:VOTACIONES-APP/Presentacion/Presentacion.csproj
+=======
+    <Compile Include="AWCandidatos_eliminados.aspx.cs">
+      <DependentUpon>AWCandidatos_eliminados.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AWCandidatos_eliminados.aspx.designer.cs">
+      <DependentUpon>AWCandidatos_eliminados.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AWEstado_vida.aspx.cs">
+      <DependentUpon>AWEstado_vida.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AWEstado_vida.aspx.designer.cs">
+      <DependentUpon>AWEstado_vida.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AWPartidos.aspx.cs">
+      <DependentUpon>AWPartidos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AWPartidos.aspx.designer.cs">
+      <DependentUpon>AWPartidos.aspx</DependentUpon>
+    </Compile>
     <Compile Include="AWUsuarios.aspx.cs">
       <DependentUpon>AWUsuarios.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -151,6 +189,14 @@
     <Compile Include="AWUsuariosNoVotantes.aspx.designer.cs">
       <DependentUpon>AWUsuariosNoVotantes.aspx</DependentUpon>
     </Compile>
+    <Compile Include="AWVotos.aspx.cs">
+      <DependentUpon>AWVotos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AWVotos.aspx.designer.cs">
+      <DependentUpon>AWVotos.aspx</DependentUpon>
+    </Compile>
+>>>>>>> 781d1d1e20bbf272ac034be90d2111b2c276fe5e:VOTACIONES-APP/Presentacion/Presentation.csproj
     <Compile Include="Inicio.aspx.cs">
       <DependentUpon>Inicio.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -166,12 +212,33 @@
       <DependentUpon>main.Master</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="AWCandidatos.aspx.cs">
-      <DependentUpon>AWCandidatos.aspx</DependentUpon>
+    <Compile Include="WFCandidatos.aspx.cs">
+      <DependentUpon>WFCandidatos.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="AWCandidatos.aspx.designer.cs">
-      <DependentUpon>AWCandidatos.aspx</DependentUpon>
+    <Compile Include="WFCandidatos.aspx.designer.cs">
+      <DependentUpon>WFCandidatos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WFUsuarios.aspx.cs">
+      <DependentUpon>WFUsuarios.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WFUsuarios.aspx.designer.cs">
+      <DependentUpon>WFUsuarios.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WFUsuariosAFK.aspx.cs">
+      <DependentUpon>WFUsuariosAFK.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WFUsuariosAFK.aspx.designer.cs">
+      <DependentUpon>WFUsuariosAFK.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WFUsuariosNoVotantes.aspx.cs">
+      <DependentUpon>WFUsuariosNoVotantes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WFUsuariosNoVotantes.aspx.designer.cs">
+      <DependentUpon>WFUsuariosNoVotantes.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -224,7 +291,9 @@
     <PropertyGroup>
       <ErrorText>Este proyecto hace referencia a los paquetes NuGet que faltan en este equipo. Use la restauración de paquetes NuGet para descargarlos. Para obtener más información, consulte http://go.microsoft.com/fwlink/?LinkID=322105. El archivo que falta es {0}.</ErrorText>
     </PropertyGroup>
+
     <Error Condition="!Exists('..\packages\Microsoft.Net.Compilers.4.2.0\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Net.Compilers.4.2.0\build\Microsoft.Net.Compilers.props'))" />
+
   </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

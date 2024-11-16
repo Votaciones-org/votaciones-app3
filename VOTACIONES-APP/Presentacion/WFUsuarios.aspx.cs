@@ -1,20 +1,19 @@
-using Logic;
-using Presentation;
-using System;
+﻿using System;
 using System.Data;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Logic; // Asegúrate de tener la capa de lógica
 
-namespace Presentation
+namespace Presentacion2
 {
     public partial class WFUsuarios : System.Web.UI.Page
     {
         // Instancia de la capa de lógica para usuarios
-        
         CandidatosLog objCanLog = new CandidatosLog();
         UsuariosAfkLog objAfkDat = new UsuariosAfkLog();
         UsuariosLog objusu = new UsuariosLog();
         Usuarios_No_votantesLog objNO = new Usuarios_No_votantesLog();
+        
         private int _id;
         private string _correo, _contrasena;
         private bool executed = false;
@@ -143,7 +142,3 @@ namespace Presentation
         }
     }
 }
-
-
-
-

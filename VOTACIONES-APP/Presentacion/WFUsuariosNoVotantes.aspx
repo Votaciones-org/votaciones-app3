@@ -1,4 +1,4 @@
-<%@ Page Title="Gestión de Usuarios No Votantes" Language="C#" MasterPageFile="~/Main.Master" AutoEventWireup="true" CodeBehind="AWFUsuariosNoVotantes.aspx.cs" Inherits="Presentation.AWFUsuariosNoVotantes" %>
+﻿<%@ Page Title="Gestión de Usuarios No Votantes" Language="C#" MasterPageFile="~/Main.Master" AutoEventWireup="true" CodeBehind="WFUsuariosNoVotantes.aspx.cs" Inherits="Presentacion4.WFUsuariosNoVotantes" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <!-- Aquí puedes agregar cualquier contenido que quieras dentro del <head> -->
@@ -6,11 +6,11 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <h1>Gestión de Usuarios No Votantes</h1>
+
     <div>
         <!-- HiddenField para almacenar el ID del usuario seleccionado -->
         <asp:HiddenField ID="HFIdUsuario" runat="server" />
 
-        <!-- Campos para ingresar la información del usuario no votante -->
         <asp:Label ID="Label1" runat="server" Text="Ingrese el nombre del usuario"></asp:Label>
         <asp:TextBox ID="no_nombre" runat="server" />
         <br />
@@ -34,18 +34,15 @@
         <br />
 
         <!-- GridView para mostrar la lista de usuarios no votantes -->
-        <asp:GridView ID="GVUsuariosNoVotantes" runat="server" AutoGenerateColumns="False" OnSelectedIndexChanged="GVUsuariosNoVotantes_SelectedIndexChanged" OnRowCommand="GVUsuariosNoVotantes_RowCommand" DataKeyNames="id_usuario">
+        <asp:GridView ID="GVUsuariosNoVotantes" runat="server" AutoGenerateColumns="False" 
+            OnSelectedIndexChanged="GVUsuariosNoVotantes_SelectedIndexChanged" 
+            OnRowCommand="GVUsuariosNoVotantes_RowCommand" DataKeyNames="id_usuario">
             <Columns>
                 <asp:BoundField DataField="id_usuario" HeaderText="ID Usuario" SortExpression="id_usuario" />
                 <asp:BoundField DataField="nombre" HeaderText="Nombre" SortExpression="nombre" />
-                <asp:BoundField DataField="apellido" HeaderText="Apellido" SortExpression="apellido" />
-                <asp:BoundField DataField="cedula" HeaderText="Cédula" SortExpression="cedula" />
-                <asp:BoundField DataField="opcion" HeaderText="Opción" SortExpression="opcion" />
                 <asp:CommandField ShowSelectButton="True" />
                 <asp:CommandField ShowDeleteButton="True" />
             </Columns>
         </asp:GridView>
     </div>
 </asp:Content>
-
-

@@ -1,4 +1,4 @@
-//------------------------------------------------------------------------------
+﻿//------------------------------------------------------------------------------
 // <generado automáticamente>
 //     Este código fue generado por una herramienta.
 //
@@ -7,21 +7,21 @@
 // </generado automáticamente>
 //------------------------------------------------------------------------------
 
-namespace Presentation
+namespace Presentacion1
 {
 
 
-    public partial class AWUsuariosAFK
+    public partial class WFCandidatos
     {
 
         /// <summary>
-        /// Control HfUsuarioId.
+        /// Control HFIdCandidato.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField HfUsuarioId;
+        protected global::System.Web.UI.WebControls.HiddenField HFIdCandidato;
 
         /// <summary>
         /// Control Label1.
@@ -33,13 +33,13 @@ namespace Presentation
         protected global::System.Web.UI.WebControls.Label Label1;
 
         /// <summary>
-        /// Control TBCorreo.
+        /// Control can_nombre.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TBCorreo;
+        protected global::System.Web.UI.WebControls.TextBox can_nombre;
 
         /// <summary>
         /// Control Label2.
@@ -51,31 +51,85 @@ namespace Presentation
         protected global::System.Web.UI.WebControls.Label Label2;
 
         /// <summary>
-        /// Control TBContrasena.
+        /// Control can_apellido.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TBContrasena;
+        protected global::System.Web.UI.WebControls.TextBox can_apellido;
 
         /// <summary>
-        /// Control BtnSave.
+        /// Control Label3.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button BtnSave;
+        protected global::System.Web.UI.WebControls.Label Label3;
 
         /// <summary>
-        /// Control BtnUpdate.
+        /// Control can_partido.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button BtnUpdate;
+        protected global::System.Web.UI.WebControls.TextBox can_partido;
+
+        /// <summary>
+        /// Control Label4.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label4;
+
+        /// <summary>
+        /// Control can_fecha_nacimiento.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox can_fecha_nacimiento;
+
+        /// <summary>
+        /// Control Label5.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label5;
+
+        /// <summary>
+        /// Control can_propuesta.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox can_propuesta;
+
+        /// <summary>
+        /// Control btnGuardar.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnGuardar;
+
+        /// <summary>
+        /// Control btnActualizar.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnActualizar;
 
         /// <summary>
         /// Control LblMsj.
@@ -87,12 +141,12 @@ namespace Presentation
         protected global::System.Web.UI.WebControls.Label LblMsj;
 
         /// <summary>
-        /// Control GVUsuariosAFK.
+        /// Control GVClientes.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView GVUsuariosAFK;
+        protected global::System.Web.UI.WebControls.GridView GVClientes;
     }
 }

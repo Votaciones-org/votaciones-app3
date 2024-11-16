@@ -7,111 +7,111 @@
 // </generado automáticamente>
 //------------------------------------------------------------------------------
 
-namespace Presentation
+namespace Presentacion
 {
 
 
-    public partial class AWFUsuariosNoVotantes
+    public partial class AWVotos
     {
 
         /// <summary>
-        /// Control HFIdUsuario.
+        /// Control LblId.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField HFIdUsuario;
+        protected global::System.Web.UI.WebControls.Label LblId;
 
         /// <summary>
-        /// Control Label1.
+        /// Control LblNombre.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label1;
+        protected global::System.Web.UI.WebControls.Label LblNombre;
 
         /// <summary>
-        /// Control no_nombre.
+        /// Control TBNombre.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox no_nombre;
+        protected global::System.Web.UI.WebControls.TextBox TBNombre;
 
         /// <summary>
-        /// Control Label2.
+        /// Control LblApellido.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label2;
+        protected global::System.Web.UI.WebControls.Label LblApellido;
 
         /// <summary>
-        /// Control no_apellido.
+        /// Control TBApellido.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox no_apellido;
+        protected global::System.Web.UI.WebControls.TextBox TBApellido;
 
         /// <summary>
-        /// Control Label3.
+        /// Control LblCedula.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label3;
+        protected global::System.Web.UI.WebControls.Label LblCedula;
 
         /// <summary>
-        /// Control no_cedula.
+        /// Control TBCedula.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox no_cedula;
+        protected global::System.Web.UI.WebControls.TextBox TBCedula;
 
         /// <summary>
-        /// Control Label4.
+        /// Control LblOpcion.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label4;
+        protected global::System.Web.UI.WebControls.Label LblOpcion;
 
         /// <summary>
-        /// Control no_opcion.
+        /// Control TBOpcion.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox no_opcion;
+        protected global::System.Web.UI.WebControls.TextBox TBOpcion;
 
         /// <summary>
-        /// Control btnGuardar.
+        /// Control BtnSave.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnGuardar;
+        protected global::System.Web.UI.WebControls.Button BtnSave;
 
         /// <summary>
-        /// Control btnActualizar.
+        /// Control BtnUpdate.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnActualizar;
+        protected global::System.Web.UI.WebControls.Button BtnUpdate;
 
         /// <summary>
         /// Control LblMsj.
@@ -123,12 +123,12 @@ namespace Presentation
         protected global::System.Web.UI.WebControls.Label LblMsj;
 
         /// <summary>
-        /// Control GVUsuariosNoVotantes.
+        /// Control GVVotos.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView GVUsuariosNoVotantes;
+        protected global::System.Web.UI.WebControls.GridView GVVotos;
     }
 }

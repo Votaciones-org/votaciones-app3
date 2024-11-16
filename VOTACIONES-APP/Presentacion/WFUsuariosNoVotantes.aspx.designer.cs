@@ -1,4 +1,4 @@
-//------------------------------------------------------------------------------
+﻿//------------------------------------------------------------------------------
 // <generado automáticamente>
 //     Este código fue generado por una herramienta.
 //
@@ -7,21 +7,21 @@
 // </generado automáticamente>
 //------------------------------------------------------------------------------
 
-namespace Presentation
+namespace Presentacion4
 {
 
 
-    public partial class WFUsuarios
+    public partial class WFUsuariosNoVotantes
     {
 
         /// <summary>
-        /// Control HfUsuarioId.
+        /// Control HFIdUsuario.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField HfUsuarioId;
+        protected global::System.Web.UI.WebControls.HiddenField HFIdUsuario;
 
         /// <summary>
         /// Control Label1.
@@ -33,13 +33,13 @@ namespace Presentation
         protected global::System.Web.UI.WebControls.Label Label1;
 
         /// <summary>
-        /// Control TBCorreo.
+        /// Control no_nombre.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TBCorreo;
+        protected global::System.Web.UI.WebControls.TextBox no_nombre;
 
         /// <summary>
         /// Control Label2.
@@ -51,31 +51,67 @@ namespace Presentation
         protected global::System.Web.UI.WebControls.Label Label2;
 
         /// <summary>
-        /// Control TBContrasena.
+        /// Control no_apellido.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TBContrasena;
+        protected global::System.Web.UI.WebControls.TextBox no_apellido;
 
         /// <summary>
-        /// Control BtnSave.
+        /// Control Label3.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button BtnSave;
+        protected global::System.Web.UI.WebControls.Label Label3;
 
         /// <summary>
-        /// Control BtnUpdate.
+        /// Control no_cedula.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button BtnUpdate;
+        protected global::System.Web.UI.WebControls.TextBox no_cedula;
+
+        /// <summary>
+        /// Control Label4.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label4;
+
+        /// <summary>
+        /// Control no_opcion.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox no_opcion;
+
+        /// <summary>
+        /// Control btnGuardar.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnGuardar;
+
+        /// <summary>
+        /// Control btnActualizar.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnActualizar;
 
         /// <summary>
         /// Control LblMsj.
@@ -87,12 +123,12 @@ namespace Presentation
         protected global::System.Web.UI.WebControls.Label LblMsj;
 
         /// <summary>
-        /// Control GVUsuarios.
+        /// Control GVUsuariosNoVotantes.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView GVUsuarios;
+        protected global::System.Web.UI.WebControls.GridView GVUsuariosNoVotantes;
     }
 }

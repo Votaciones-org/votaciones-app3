@@ -1,29 +1,25 @@
-﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="main.master.cs" Inherits="Presentacion.main" %>
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="main.Master.cs" Inherits="Presentacion.main" %>
 
 <!DOCTYPE html>
 
 <html>
 <head runat="server">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title></title>
-    <asp:ContentPlaceHolder ID="head" runat="server">
-    </asp:ContentPlaceHolder>
-</head>
+    <title>Mi Aplicación</title>
+    </head>
 <body>
     <form id="form1" runat="server">
-        <%--Aqui va lo que se repite en los demas formularios--%>
-        <a href="Inicio.aspx">Inicio</a>
-        <a href="AWUsuarios.aspx">Usuarios</a>
-        <a href="AWUsuariosAFK.aspx">Usuarios_afk</a>
-        <a href="AWUsuariosNoVotantes.aspx">Usuarios_no_votantes</a>
-        <a href="AWCandidatos.aspx">Candidatos</a>
-        <a href="#">Cerrar sesion</a>
+        <div>
+            <ul>
+                <li><a href="Inicio.aspx">Inicio</a></li>
+                <li><a href="WFCandidatos.aspx">Candidatos</a></li>
+                <li><a href="WFUsuariosNoVotantes.aspx">Usuarios No Votantes</a></li>
+            </ul>
+        </div>
+
         <div>
             <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
             </asp:ContentPlaceHolder>
         </div>
     </form>
-    <%--Pie de pagina--%>
 </body>
 </html>
-

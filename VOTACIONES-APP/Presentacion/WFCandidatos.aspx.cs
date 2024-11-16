@@ -1,10 +1,10 @@
-using Logic;
-using System;
+﻿using System;
 using System.Data;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Logic;  // Importamos la capa de lógica
 
-namespace Presentation
+namespace Presentacion1  // Asegúrate de que el namespace coincida con tu proyecto
 {
     public partial class WFCandidatos : System.Web.UI.Page
     {
