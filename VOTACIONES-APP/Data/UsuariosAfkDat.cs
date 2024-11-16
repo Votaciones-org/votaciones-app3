@@ -15,15 +15,51 @@ namespace Data
             MySqlDataAdapter objAdapter = new MySqlDataAdapter();
             DataSet objData = new DataSet();
 
-            MySqlCommand objSelectCmd = new MySqlCommand();
-            objSelectCmd.Connection = objPer.openConnection();
-            objSelectCmd.CommandText = "procSelectUsuariosAFK";  // Nombre del procedimiento almacenado.
-            objSelectCmd.CommandType = CommandType.StoredProcedure;
+            // Verifica si objPer es null antes de intentar usarlo
+            if (objPer == null)
+            {
+                Console.WriteLine("Error: objPer es null.");
+                return objData;
+            }
 
-            objAdapter.SelectCommand = objSelectCmd;
-            objAdapter.Fill(objData);
+            // Intentamos abrir la conexión
+            MySqlConnection connection = null;
+            try
+            {
+                connection = objPer.openConnection();
 
-            objPer.closeConnection();
+                // Verifica si la conexión está abierta
+                if (connection == null || connection.State != ConnectionState.Open)
+                {
+                    Console.WriteLine("Error: No se pudo abrir la conexión.");
+                    return objData;
+                }
+
+                MySqlCommand objSelectCmd = new MySqlCommand
+                {
+                    Connection = connection,
+                    CommandText = "procSelectUsuariosAFK",  // Nombre del procedimiento almacenado.
+                    CommandType = CommandType.StoredProcedure
+                };
+
+                // Asociamos el comando al adaptador
+                objAdapter.SelectCommand = objSelectCmd;
+
+                // Llenamos el DataSet con los datos
+                objAdapter.Fill(objData);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error al cargar los usuarios AFK: " + ex.Message);
+            }
+            finally
+            {
+                // Asegúrate de cerrar la conexión en el bloque finally
+                if (connection != null && connection.State == ConnectionState.Open)
+                {
+                    objPer.closeConnection();
+                }
+            }
 
             return objData;
         }
@@ -33,17 +69,30 @@ namespace Data
         {
             bool executed = false;
             int row;
-
-            MySqlCommand objSelectCmd = new MySqlCommand();
-            objSelectCmd.Connection = objPer.openConnection();
-            objSelectCmd.CommandText = "procInsertUsuariosAFK";  // Nombre del procedimiento almacenado.
-            objSelectCmd.CommandType = CommandType.StoredProcedure;
-
-            objSelectCmd.Parameters.Add("p_correo", MySqlDbType.VarString).Value = _correo;
-            objSelectCmd.Parameters.Add("p_contrasena", MySqlDbType.VarString).Value = _contrasena;
+            MySqlConnection connection = null;
 
             try
             {
+                // Abrimos la conexión
+                connection = objPer.openConnection();
+
+                // Verifica si la conexión se ha abierto correctamente
+                if (connection == null || connection.State != ConnectionState.Open)
+                {
+                    Console.WriteLine("Error: No se pudo abrir la conexión.");
+                    return executed;
+                }
+
+                MySqlCommand objSelectCmd = new MySqlCommand
+                {
+                    Connection = connection,
+                    CommandText = "procInsertUsuariosAFK",  // Nombre del procedimiento almacenado.
+                    CommandType = CommandType.StoredProcedure
+                };
+
+                objSelectCmd.Parameters.Add("p_correo", MySqlDbType.VarString).Value = _correo;
+                objSelectCmd.Parameters.Add("p_contrasena", MySqlDbType.VarString).Value = _contrasena;
+
                 row = objSelectCmd.ExecuteNonQuery();
                 if (row == 1)
                 {
@@ -52,10 +101,16 @@ namespace Data
             }
             catch (Exception e)
             {
-                Console.WriteLine("Error " + e.ToString());
+                Console.WriteLine("Error al guardar el usuario: " + e.ToString());
+            }
+            finally
+            {
+                if (connection != null && connection.State == ConnectionState.Open)
+                {
+                    objPer.closeConnection();
+                }
             }
 
-            objPer.closeConnection();
             return executed;
         }
 
@@ -64,18 +119,30 @@ namespace Data
         {
             bool executed = false;
             int row;
-
-            MySqlCommand objSelectCmd = new MySqlCommand();
-            objSelectCmd.Connection = objPer.openConnection();
-            objSelectCmd.CommandText = "procUpdateUsuariosAFK";  // Nombre del procedimiento almacenado.
-            objSelectCmd.CommandType = CommandType.StoredProcedure;
-
-            objSelectCmd.Parameters.Add("p_id", MySqlDbType.Int32).Value = _id;
-            objSelectCmd.Parameters.Add("p_correo", MySqlDbType.VarString).Value = _correo;
-            objSelectCmd.Parameters.Add("p_contrasena", MySqlDbType.VarString).Value = _contrasena;
+            MySqlConnection connection = null;
 
             try
             {
+                connection = objPer.openConnection();
+
+                // Verifica si la conexión se ha abierto correctamente
+                if (connection == null || connection.State != ConnectionState.Open)
+                {
+                    Console.WriteLine("Error: No se pudo abrir la conexión.");
+                    return executed;
+                }
+
+                MySqlCommand objSelectCmd = new MySqlCommand
+                {
+                    Connection = connection,
+                    CommandText = "procUpdateUsuariosAFK",  // Nombre del procedimiento almacenado.
+                    CommandType = CommandType.StoredProcedure
+                };
+
+                objSelectCmd.Parameters.Add("p_id", MySqlDbType.Int32).Value = _id;
+                objSelectCmd.Parameters.Add("p_correo", MySqlDbType.VarString).Value = _correo;
+                objSelectCmd.Parameters.Add("p_contrasena", MySqlDbType.VarString).Value = _contrasena;
+
                 row = objSelectCmd.ExecuteNonQuery();
                 if (row == 1)
                 {
@@ -84,10 +151,16 @@ namespace Data
             }
             catch (Exception e)
             {
-                Console.WriteLine("Error " + e.ToString());
+                Console.WriteLine("Error al actualizar el usuario: " + e.ToString());
+            }
+            finally
+            {
+                if (connection != null && connection.State == ConnectionState.Open)
+                {
+                    objPer.closeConnection();
+                }
             }
 
-            objPer.closeConnection();
             return executed;
         }
 
@@ -96,15 +169,28 @@ namespace Data
         {
             bool executed = false;
             int row;
-
-            MySqlCommand objSelectCmd = new MySqlCommand();
-            objSelectCmd.Connection = objPer.openConnection();
-            objSelectCmd.CommandText = "procDeleteUsuariosAFK";  // Nombre del procedimiento almacenado.
-            objSelectCmd.CommandType = CommandType.StoredProcedure;
-            objSelectCmd.Parameters.Add("p_id", MySqlDbType.Int32).Value = _id;
+            MySqlConnection connection = null;
 
             try
             {
+                connection = objPer.openConnection();
+
+                // Verifica si la conexión se ha abierto correctamente
+                if (connection == null || connection.State != ConnectionState.Open)
+                {
+                    Console.WriteLine("Error: No se pudo abrir la conexión.");
+                    return executed;
+                }
+
+                MySqlCommand objSelectCmd = new MySqlCommand
+                {
+                    Connection = connection,
+                    CommandText = "procDeleteUsuariosAFK",  // Nombre del procedimiento almacenado.
+                    CommandType = CommandType.StoredProcedure
+                };
+
+                objSelectCmd.Parameters.Add("p_id", MySqlDbType.Int32).Value = _id;
+
                 row = objSelectCmd.ExecuteNonQuery();
                 if (row == 1)
                 {
@@ -113,11 +199,18 @@ namespace Data
             }
             catch (Exception e)
             {
-                Console.WriteLine("Error " + e.ToString());
+                Console.WriteLine("Error al eliminar el usuario: " + e.ToString());
+            }
+            finally
+            {
+                if (connection != null && connection.State == ConnectionState.Open)
+                {
+                    objPer.closeConnection();
+                }
             }
 
-            objPer.closeConnection();
             return executed;
         }
     }
 }
+

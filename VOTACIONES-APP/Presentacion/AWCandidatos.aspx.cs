@@ -1,5 +1,3 @@
-
-using Data;
 using Logic;
 using System;
 using System.Data;
@@ -10,12 +8,8 @@ namespace Presentation
 {
     public partial class WFCandidatos : System.Web.UI.Page
     {
-
         // Creamos una instancia de la clase CandidatosLog para interactuar con la capa de negocio
         CandidatosLog objCanLog = new CandidatosLog();
-        UsuariosAfkLog objAfkDat = new UsuariosAfkLog();  // Corregido el nombre de la clase a UsuariosAfkDat.
-        Usuarios_No_votantesLog objNO = new Usuarios_No_votantesLog();
-        UsuariosLog objusu = new UsuariosLog();
 
         private int _idCandidato;
         private string _nombre, _apellido, _partido, _fechaNacimiento, _propuesta;
@@ -26,7 +20,7 @@ namespace Presentation
         {
             if (!Page.IsPostBack)
             {
-                showCandidatos(); // Método para cargar todos los candidatos
+                showCandidatos(); // Cargar todos los candidatos al inicio
             }
         }
 
@@ -57,33 +51,38 @@ namespace Presentation
             }
         }
 
-        // Limpiar los campos de entrada
+        // Método para limpiar los campos de entrada
         private void clear()
         {
+            // Limpiar los campos del formulario
             can_nombre.Text = "";
             can_apellido.Text = "";
             can_partido.Text = "";
             can_fecha_nacimiento.Text = "";
             can_propuesta.Text = "";
+
+            // Ocultar el botón de actualización después de guardar
+            btnActualizar.Visible = false;
         }
 
         // Evento para guardar un nuevo candidato
         protected void btnGuardar_Click(object sender, EventArgs e)
         {
+            // Obtener datos de los campos de texto
             _nombre = can_nombre.Text;
             _apellido = can_apellido.Text;
             _partido = can_partido.Text;
             _fechaNacimiento = can_fecha_nacimiento.Text;
             _propuesta = can_propuesta.Text;
 
-            // Llamada a la función de la capa de negocio para guardar el candidato
+            // Llamar al método de la capa de negocio para guardar el candidato
             executed = objCanLog.saveCandidato(_nombre, _apellido, _partido, _fechaNacimiento, _propuesta);
 
             if (executed)
             {
                 LblMsj.Text = "El candidato se guardó exitosamente!";
                 clear(); // Limpiar los campos
-                showCandidatos(); // Actualizar el listado
+                showCandidatos(); // Actualizar la lista de candidatos
             }
             else
             {
@@ -94,6 +93,7 @@ namespace Presentation
         // Evento para actualizar un candidato
         protected void btnActualizar_Click(object sender, EventArgs e)
         {
+            // Obtener los datos del candidato para la actualización
             _idCandidato = Convert.ToInt32(HFIdCandidato.Value); // Obtener el ID del candidato a actualizar
             _nombre = can_nombre.Text;
             _apellido = can_apellido.Text;
@@ -101,14 +101,14 @@ namespace Presentation
             _fechaNacimiento = can_fecha_nacimiento.Text;
             _propuesta = can_propuesta.Text;
 
-            // Llamada a la función de la capa de negocio para actualizar el candidato
+            // Llamar al método de la capa de negocio para actualizar el candidato
             executed = objCanLog.updateCandidato(_idCandidato, _nombre, _apellido, _partido, _fechaNacimiento, _propuesta);
 
             if (executed)
             {
                 LblMsj.Text = "El candidato se actualizó exitosamente!";
                 clear(); // Limpiar los campos
-                showCandidatos(); // Actualizar el listado
+                showCandidatos(); // Actualizar la lista de candidatos
             }
             else
             {
@@ -121,12 +121,16 @@ namespace Presentation
         {
             // Asignar el ID del candidato a un campo oculto (HiddenField)
             HFIdCandidato.Value = GVClientes.SelectedRow.Cells[0].Text;
+
             // Asignar los valores de las celdas seleccionadas a los campos de texto
             can_nombre.Text = GVClientes.SelectedRow.Cells[1].Text;
             can_apellido.Text = GVClientes.SelectedRow.Cells[2].Text;
             can_partido.Text = GVClientes.SelectedRow.Cells[3].Text;
             can_fecha_nacimiento.Text = GVClientes.SelectedRow.Cells[4].Text;
             can_propuesta.Text = GVClientes.SelectedRow.Cells[5].Text;
+
+            // Mostrar el botón de actualización cuando se selecciona un candidato
+            btnActualizar.Visible = true;
         }
 
         // Evento para eliminar un candidato
@@ -137,86 +141,18 @@ namespace Presentation
                 int rowIndex = Convert.ToInt32(e.CommandArgument);
                 _idCandidato = Convert.ToInt32(GVClientes.DataKeys[rowIndex].Value);
 
-                // Llamada a la función de la capa de negocio para eliminar el candidato
+                // Llamar al método de la capa de negocio para eliminar el candidato
                 executed = objCanLog.deleteCandidato(_idCandidato);
 
                 if (executed)
                 {
                     LblMsj.Text = "Candidato eliminado exitosamente!";
-                    showCandidatos(); // Actualizar el listado
+                    showCandidatos(); // Actualizar la lista de candidatos
                 }
                 else
                 {
                     LblMsj.Text = "Error al eliminar el candidato!";
                 }
-
-        CandidatosLog objCanLog = new CandidatosLog();
-
-        protected void Page_Load(object sender, EventArgs e)
-        {
-            if (!IsPostBack)
-            {
-                showCandidatos(); // Mostrar los candidatos al cargar la página
-            }
-        }
-
-        // Método para mostrar todos los candidatos en el GridView
-        private void showCandidatos()
-        {
-            DataSet ds = objCanLog.showCandidatos();
-            GVClientes.DataSource = ds;
-            GVClientes.DataBind();
-        }
-
-        // Método para guardar un nuevo candidato
-        protected void btnGuardar_Click(object sender, EventArgs e)
-        {
-            string nombre = can_nombre.Text;  // Acceder al valor del TextBox
-            string apellido = can_apellido.Text;
-            string partido = can_partido.Text;
-            string fechaNacimiento = can_fecha_nacimiento.Text;
-            string propuesta = can_propuesta.Text;
-
-            bool result = objCanLog.saveCandidato(nombre, apellido, partido, fechaNacimiento, propuesta);
-
-            if (result)
-            {
-                // Mensaje de éxito
-                Response.Write("<script>alert('Candidato guardado exitosamente');</script>");
-                showCandidatos(); // Recargar los candidatos
-            }
-            else
-            {
-                // Mensaje de error
-                Response.Write("<script>alert('Error al guardar candidato');</script>");
-            }
-        }
-
-        // Método para actualizar un candidato
-        protected void btnActualizar_Click(object sender, EventArgs e)
-        {
-            // Aquí deberías obtener el ID del candidato a actualizar y pasar los nuevos valores
-            // Ejemplo con un ID ficticio:
-            int idCandidato = 1; // Esto lo puedes reemplazar por un valor dinámico según el ID del candidato que se está actualizando.
-            string nombre = can_nombre.Text;
-            string apellido = can_apellido.Text;
-            string partido = can_partido.Text;
-            string fechaNacimiento = can_fecha_nacimiento.Text;
-            string propuesta = can_propuesta.Text;
-
-            bool result = objCanLog.updateCandidato(idCandidato, nombre, apellido, partido, fechaNacimiento, propuesta);
-
-            if (result)
-            {
-                // Mensaje de éxito
-                Response.Write("<script>alert('Candidato actualizado exitosamente');</script>");
-                showCandidatos(); // Recargar los candidatos
-            }
-            else
-            {
-                // Mensaje de error
-                Response.Write("<script>alert('Error al actualizar candidato');</script>");
-
             }
         }
     }

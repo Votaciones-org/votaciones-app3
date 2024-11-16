@@ -16,14 +16,37 @@ namespace Data
             DataSet objData = new DataSet();
             MySqlCommand objSelectCmd = new MySqlCommand();
 
-            objSelectCmd.Connection = objPer.openConnection();
-            objSelectCmd.CommandText = "procSelectUsuariosNoVotantes"; // Procedimiento almacenado para seleccionar los usuarios
-            objSelectCmd.CommandType = CommandType.StoredProcedure;
+            try
+            {
+                // Asegúrate de que la conexión se haya abierto correctamente
+                MySqlConnection connection = objPer.openConnection();
 
-            objAdapter.SelectCommand = objSelectCmd;
-            objAdapter.Fill(objData);
+                if (connection == null || connection.State != ConnectionState.Open)
+                {
+                    Console.WriteLine("Error: No se pudo abrir la conexión.");
+                    return objData;
+                }
 
-            objPer.closeConnection();
+                // Asignar la conexión al comando
+                objSelectCmd.Connection = connection;
+                objSelectCmd.CommandText = "procSelectUsuariosNoVotantes"; // Procedimiento almacenado para seleccionar los usuarios
+                objSelectCmd.CommandType = CommandType.StoredProcedure;
+
+                // Asociamos el comando al adaptador
+                objAdapter.SelectCommand = objSelectCmd;
+
+                // Llenamos el DataSet con los datos
+                objAdapter.Fill(objData);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error al cargar los usuarios no votantes: " + ex.Message);
+            }
+            finally
+            {
+                // Asegúrate de cerrar la conexión después de usarla
+                objPer.closeConnection();
+            }
 
             return objData;
         }
@@ -33,19 +56,31 @@ namespace Data
         {
             bool executed = false;
             int row;
-
-            MySqlCommand objSelectCmd = new MySqlCommand();
-            objSelectCmd.Connection = objPer.openConnection();
-            objSelectCmd.CommandText = "procInsertUsuarioNoVotante"; // Procedimiento almacenado para insertar un nuevo usuario
-            objSelectCmd.CommandType = CommandType.StoredProcedure;
-
-            objSelectCmd.Parameters.Add("p_nombre", MySqlDbType.VarString).Value = _nombre;
-            objSelectCmd.Parameters.Add("p_apellido", MySqlDbType.VarString).Value = _apellido;
-            objSelectCmd.Parameters.Add("p_cedula", MySqlDbType.VarString).Value = _cedula;
-            objSelectCmd.Parameters.Add("p_opcion", MySqlDbType.VarString).Value = _opcion;
+            MySqlConnection connection = null;
 
             try
             {
+                // Intentamos abrir la conexión
+                connection = objPer.openConnection();
+
+                if (connection == null || connection.State != ConnectionState.Open)
+                {
+                    Console.WriteLine("Error: No se pudo abrir la conexión.");
+                    return executed;
+                }
+
+                MySqlCommand objSelectCmd = new MySqlCommand
+                {
+                    Connection = connection,
+                    CommandText = "procInsertUsuarioNoVotante", // Procedimiento almacenado para insertar un nuevo usuario
+                    CommandType = CommandType.StoredProcedure
+                };
+
+                objSelectCmd.Parameters.Add("p_nombre", MySqlDbType.VarString).Value = _nombre;
+                objSelectCmd.Parameters.Add("p_apellido", MySqlDbType.VarString).Value = _apellido;
+                objSelectCmd.Parameters.Add("p_cedula", MySqlDbType.VarString).Value = _cedula;
+                objSelectCmd.Parameters.Add("p_opcion", MySqlDbType.VarString).Value = _opcion;
+
                 row = objSelectCmd.ExecuteNonQuery();
                 if (row == 1)
                 {
@@ -54,9 +89,16 @@ namespace Data
             }
             catch (Exception e)
             {
-                Console.WriteLine("Error: " + e.ToString());
+                Console.WriteLine("Error al guardar el usuario no votante: " + e.ToString());
             }
-            objPer.closeConnection();
+            finally
+            {
+                if (connection != null && connection.State == ConnectionState.Open)
+                {
+                    objPer.closeConnection();
+                }
+            }
+
             return executed;
         }
 
@@ -65,20 +107,31 @@ namespace Data
         {
             bool executed = false;
             int row;
-
-            MySqlCommand objSelectCmd = new MySqlCommand();
-            objSelectCmd.Connection = objPer.openConnection();
-            objSelectCmd.CommandText = "procUpdateUsuarioNoVotante"; // Procedimiento almacenado para actualizar un usuario
-            objSelectCmd.CommandType = CommandType.StoredProcedure;
-
-            objSelectCmd.Parameters.Add("p_id", MySqlDbType.Int32).Value = _id;
-            objSelectCmd.Parameters.Add("p_nombre", MySqlDbType.VarString).Value = _nombre;
-            objSelectCmd.Parameters.Add("p_apellido", MySqlDbType.VarString).Value = _apellido;
-            objSelectCmd.Parameters.Add("p_cedula", MySqlDbType.VarString).Value = _cedula;
-            objSelectCmd.Parameters.Add("p_opcion", MySqlDbType.VarString).Value = _opcion;
+            MySqlConnection connection = null;
 
             try
             {
+                connection = objPer.openConnection();
+
+                if (connection == null || connection.State != ConnectionState.Open)
+                {
+                    Console.WriteLine("Error: No se pudo abrir la conexión.");
+                    return executed;
+                }
+
+                MySqlCommand objSelectCmd = new MySqlCommand
+                {
+                    Connection = connection,
+                    CommandText = "procUpdateUsuarioNoVotante", // Procedimiento almacenado para actualizar un usuario
+                    CommandType = CommandType.StoredProcedure
+                };
+
+                objSelectCmd.Parameters.Add("p_id", MySqlDbType.Int32).Value = _id;
+                objSelectCmd.Parameters.Add("p_nombre", MySqlDbType.VarString).Value = _nombre;
+                objSelectCmd.Parameters.Add("p_apellido", MySqlDbType.VarString).Value = _apellido;
+                objSelectCmd.Parameters.Add("p_cedula", MySqlDbType.VarString).Value = _cedula;
+                objSelectCmd.Parameters.Add("p_opcion", MySqlDbType.VarString).Value = _opcion;
+
                 row = objSelectCmd.ExecuteNonQuery();
                 if (row == 1)
                 {
@@ -87,9 +140,16 @@ namespace Data
             }
             catch (Exception e)
             {
-                Console.WriteLine("Error: " + e.ToString());
+                Console.WriteLine("Error al actualizar el usuario no votante: " + e.ToString());
             }
-            objPer.closeConnection();
+            finally
+            {
+                if (connection != null && connection.State == ConnectionState.Open)
+                {
+                    objPer.closeConnection();
+                }
+            }
+
             return executed;
         }
 
@@ -98,15 +158,27 @@ namespace Data
         {
             bool executed = false;
             int row;
-
-            MySqlCommand objSelectCmd = new MySqlCommand();
-            objSelectCmd.Connection = objPer.openConnection();
-            objSelectCmd.CommandText = "procDeleteVotoUsuarioNoVotanteDDL"; // Procedimiento almacenado para eliminar un usuario
-            objSelectCmd.CommandType = CommandType.StoredProcedure;
-            objSelectCmd.Parameters.Add("p_id", MySqlDbType.Int32).Value = _idUsuario;
+            MySqlConnection connection = null;
 
             try
             {
+                connection = objPer.openConnection();
+
+                if (connection == null || connection.State != ConnectionState.Open)
+                {
+                    Console.WriteLine("Error: No se pudo abrir la conexión.");
+                    return executed;
+                }
+
+                MySqlCommand objSelectCmd = new MySqlCommand
+                {
+                    Connection = connection,
+                    CommandText = "procDeleteVotoUsuarioNoVotanteDDL", // Procedimiento almacenado para eliminar un usuario
+                    CommandType = CommandType.StoredProcedure
+                };
+
+                objSelectCmd.Parameters.Add("p_id", MySqlDbType.Int32).Value = _idUsuario;
+
                 row = objSelectCmd.ExecuteNonQuery();
                 if (row == 1)
                 {
@@ -115,9 +187,16 @@ namespace Data
             }
             catch (Exception e)
             {
-                Console.WriteLine("Error: " + e.ToString());
+                Console.WriteLine("Error al eliminar el usuario no votante: " + e.ToString());
             }
-            objPer.closeConnection();
+            finally
+            {
+                if (connection != null && connection.State == ConnectionState.Open)
+                {
+                    objPer.closeConnection();
+                }
+            }
+
             return executed;
         }
     }
