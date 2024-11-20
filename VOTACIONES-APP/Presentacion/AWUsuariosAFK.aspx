@@ -2,6 +2,9 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <!-- Aquí puedes agregar cualquier contenido que quieras dentro del <head> -->
+        <link rel="stylesheet" href="Content/bootstrap.min.css">
+<script src="Scripts/bootstrap.min.js"></script>
+<script src="Scripts/jquery-1.9.1.min.js"></script> 
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">

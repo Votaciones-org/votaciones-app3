@@ -57,7 +57,7 @@ namespace Data
                 // Asegúrate de cerrar la conexión en el bloque finally
                 if (connection != null && connection.State == ConnectionState.Open)
                 {
-                    objPer.closeConnection();
+                    objPer.closeConnection(connection);  // Pasar la conexión a closeConnection
                 }
             }
 
@@ -107,7 +107,7 @@ namespace Data
             {
                 if (connection != null && connection.State == ConnectionState.Open)
                 {
-                    objPer.closeConnection();
+                    objPer.closeConnection(connection);  // Pasar la conexión a closeConnection
                 }
             }
 
@@ -157,7 +157,7 @@ namespace Data
             {
                 if (connection != null && connection.State == ConnectionState.Open)
                 {
-                    objPer.closeConnection();
+                    objPer.closeConnection(connection);  // Pasar la conexión a closeConnection
                 }
             }
 
@@ -205,7 +205,7 @@ namespace Data
             {
                 if (connection != null && connection.State == ConnectionState.Open)
                 {
-                    objPer.closeConnection();
+                    objPer.closeConnection(connection);  // Pasar la conexión a closeConnection
                 }
             }
 
@@ -213,4 +213,5 @@ namespace Data
         }
     }
 }
+
 

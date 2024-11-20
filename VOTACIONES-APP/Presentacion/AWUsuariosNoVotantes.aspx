@@ -1,7 +1,10 @@
-<%@ Page Title="Gestión de Usuarios No Votantes" Language="C#" MasterPageFile="~/Main.Master" AutoEventWireup="true" CodeBehind="AWFUsuariosNoVotantes.aspx.cs" Inherits="Presentation.AWFUsuariosNoVotantes" %>
+<%@ Page Title="Gestión de Usuarios No Votantes" Language="C#" MasterPageFile="~/Main.Master" AutoEventWireup="true" CodeBehind="AWUsuariosNoVotantes.aspx.cs" Inherits="Presentation.AWUsuariosNoVotantes" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <!-- Aquí puedes agregar cualquier contenido que quieras dentro del <head> -->
+        <link rel="stylesheet" href="Content/bootstrap.min.css">
+<script src="Scripts/bootstrap.min.js"></script>
+<script src="Scripts/jquery-1.9.1.min.js"></script> 
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -41,8 +44,8 @@
                 <asp:BoundField DataField="apellido" HeaderText="Apellido" SortExpression="apellido" />
                 <asp:BoundField DataField="cedula" HeaderText="Cédula" SortExpression="cedula" />
                 <asp:BoundField DataField="opcion" HeaderText="Opción" SortExpression="opcion" />
-                <asp:CommandField ShowSelectButton="True" />
-                <asp:CommandField ShowDeleteButton="True" />
+                <asp:CommandField ShowSelectButton="True" ButtonType="Button" SelectText="Seleccionar" />
+                <asp:CommandField ShowDeleteButton="True" DeleteText="Eliminar" />
             </Columns>
         </asp:GridView>
     </div>

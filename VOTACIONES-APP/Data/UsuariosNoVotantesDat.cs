@@ -15,11 +15,12 @@ namespace Data
             MySqlDataAdapter objAdapter = new MySqlDataAdapter();
             DataSet objData = new DataSet();
             MySqlCommand objSelectCmd = new MySqlCommand();
+            MySqlConnection connection = null;
 
             try
             {
                 // Asegúrate de que la conexión se haya abierto correctamente
-                MySqlConnection connection = objPer.openConnection();
+                connection = objPer.openConnection();
 
                 if (connection == null || connection.State != ConnectionState.Open)
                 {
@@ -44,8 +45,11 @@ namespace Data
             }
             finally
             {
-                // Asegúrate de cerrar la conexión después de usarla
-                objPer.closeConnection();
+                // Asegúrate de cerrar la conexión después de usarla, pasando la conexión a closeConnection()
+                if (connection != null && connection.State == ConnectionState.Open)
+                {
+                    objPer.closeConnection(connection);
+                }
             }
 
             return objData;
@@ -93,9 +97,10 @@ namespace Data
             }
             finally
             {
+                // Cerrar la conexión pasando el objeto connection
                 if (connection != null && connection.State == ConnectionState.Open)
                 {
-                    objPer.closeConnection();
+                    objPer.closeConnection(connection);
                 }
             }
 
@@ -144,9 +149,10 @@ namespace Data
             }
             finally
             {
+                // Cerrar la conexión pasando el objeto connection
                 if (connection != null && connection.State == ConnectionState.Open)
                 {
-                    objPer.closeConnection();
+                    objPer.closeConnection(connection);
                 }
             }
 
@@ -191,9 +197,10 @@ namespace Data
             }
             finally
             {
+                // Cerrar la conexión pasando el objeto connection
                 if (connection != null && connection.State == ConnectionState.Open)
                 {
-                    objPer.closeConnection();
+                    objPer.closeConnection(connection);
                 }
             }
 
@@ -201,3 +208,4 @@ namespace Data
         }
     }
 }
+

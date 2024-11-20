@@ -11,7 +11,7 @@ namespace Presentation
 {
 
 
-    public partial class WFEstadoVida
+    public partial class AWEstado_Vida
     {
 
         /// <summary>

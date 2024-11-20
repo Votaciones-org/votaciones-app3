@@ -11,17 +11,17 @@ namespace Presentation
 {
 
 
-    public partial class WFCandidatos
+    public partial class AWCandidatos
     {
 
         /// <summary>
-        /// Control HFIdCandidato.
+        /// Control HFCandidatoId.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField HFIdCandidato;
+        protected global::System.Web.UI.WebControls.HiddenField HFCandidatoId;
 
         /// <summary>
         /// Control Label1.
@@ -33,13 +33,13 @@ namespace Presentation
         protected global::System.Web.UI.WebControls.Label Label1;
 
         /// <summary>
-        /// Control can_nombre.
+        /// Control txtNombre.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox can_nombre;
+        protected global::System.Web.UI.WebControls.TextBox txtNombre;
 
         /// <summary>
         /// Control Label2.
@@ -51,13 +51,13 @@ namespace Presentation
         protected global::System.Web.UI.WebControls.Label Label2;
 
         /// <summary>
-        /// Control can_apellido.
+        /// Control txtApellido.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox can_apellido;
+        protected global::System.Web.UI.WebControls.TextBox txtApellido;
 
         /// <summary>
         /// Control Label3.
@@ -69,13 +69,13 @@ namespace Presentation
         protected global::System.Web.UI.WebControls.Label Label3;
 
         /// <summary>
-        /// Control can_partido.
+        /// Control txtPartido.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox can_partido;
+        protected global::System.Web.UI.WebControls.TextBox txtPartido;
 
         /// <summary>
         /// Control Label4.
@@ -87,13 +87,13 @@ namespace Presentation
         protected global::System.Web.UI.WebControls.Label Label4;
 
         /// <summary>
-        /// Control can_fecha_nacimiento.
+        /// Control txtFechaNacimiento.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox can_fecha_nacimiento;
+        protected global::System.Web.UI.WebControls.TextBox txtFechaNacimiento;
 
         /// <summary>
         /// Control Label5.
@@ -105,13 +105,13 @@ namespace Presentation
         protected global::System.Web.UI.WebControls.Label Label5;
 
         /// <summary>
-        /// Control can_propuesta.
+        /// Control txtPropuesta.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox can_propuesta;
+        protected global::System.Web.UI.WebControls.TextBox txtPropuesta;
 
         /// <summary>
         /// Control btnGuardar.
@@ -132,21 +132,21 @@ namespace Presentation
         protected global::System.Web.UI.WebControls.Button btnActualizar;
 
         /// <summary>
-        /// Control LblMsj.
+        /// Control LblMensaje.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LblMsj;
+        protected global::System.Web.UI.WebControls.Label LblMensaje;
 
         /// <summary>
-        /// Control GVClientes.
+        /// Control GVCandidatos.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView GVClientes;
+        protected global::System.Web.UI.WebControls.GridView GVCandidatos;
     }
 }

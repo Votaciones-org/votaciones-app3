@@ -11,7 +11,7 @@ namespace Presentation
 {
 
 
-    public partial class AWFUsuariosNoVotantes
+    public partial class AWUsuariosNoVotantes
     {
 
         /// <summary>

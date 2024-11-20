@@ -1,5 +1,4 @@
 using Logic;
-using Presentation;
 using System;
 using System.Data;
 using System.Web.UI;
@@ -7,14 +6,11 @@ using System.Web.UI.WebControls;
 
 namespace Presentation
 {
-    public partial class WFUsuarios : System.Web.UI.Page
+    public partial class AWUsuarios : System.Web.UI.Page
     {
         // Instancia de la capa de lógica para usuarios
-        
-        CandidatosLog objCanLog = new CandidatosLog();
-        UsuariosAfkLog objAfkDat = new UsuariosAfkLog();
-        UsuariosLog objusu = new UsuariosLog();
-        Usuarios_No_votantesLog objNO = new Usuarios_No_votantesLog();
+        UsuariosLog objusu = new UsuariosLog();  // Instanciando la capa lógica
+
         private int _id;
         private string _correo, _contrasena;
         private bool executed = false;
@@ -33,8 +29,8 @@ namespace Presentation
         {
             try
             {
-                // Obtenemos los datos de la capa de lógica
-                DataSet ds = objusu.showUsuarios();
+                // Obtenemos los datos de la capa lógica
+                DataSet ds = objusu.showUsuarios(); // Llamada al método de UsuariosLog
 
                 if (ds != null && ds.Tables.Count > 0)
                 {
@@ -69,7 +65,7 @@ namespace Presentation
             _contrasena = TBContrasena.Text; // Capturamos la contraseña
 
             // Llamamos al método para guardar el usuario
-            executed = objusu.saveUsuario(_correo, _contrasena);
+            executed = objusu.saveUsuario(_correo, _contrasena); // Llamada al método saveUsuario de UsuariosLog
 
             if (executed)
             {
@@ -91,7 +87,7 @@ namespace Presentation
             _contrasena = TBContrasena.Text;
 
             // Llamamos al método para actualizar el usuario
-            executed = objusu.updateUsuario(_id, _correo, _contrasena);
+            executed = objusu.updateUsuario(_id, _correo, _contrasena); // Llamada al método updateUsuario de UsuariosLog
 
             if (executed)
             {
@@ -128,7 +124,7 @@ namespace Presentation
                 _id = Convert.ToInt32(GVUsuarios.DataKeys[rowIndex].Value); // Obtener el ID desde las claves de datos
 
                 // Llamamos al método para eliminar el usuario
-                executed = objusu.deleteUsuario(_id);
+                executed = objusu.deleteUsuario(_id); // Llamada al método deleteUsuario de UsuariosLog
 
                 if (executed)
                 {
@@ -143,6 +139,9 @@ namespace Presentation
         }
     }
 }
+
+
+
 
 
 

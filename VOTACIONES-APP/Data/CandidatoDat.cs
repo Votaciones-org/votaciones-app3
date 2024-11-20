@@ -6,160 +6,163 @@ namespace Data
 {
     public class CandidatoDat
     {
-        // Se crea una instancia de la clase Persistence para manejar la conexión a la base de datos.
-        Persistence objPer = new Persistence();
+        private Persistence objPer = new Persistence(); // Instancia de Persistence para manejar la conexión
 
         // Método para mostrar los candidatos desde la base de datos.
         public DataSet showCandidatos()
         {
+            MySqlDataAdapter objAdapter = new MySqlDataAdapter();
             DataSet objData = new DataSet();
 
-            try
+            // Abrir la conexión antes de configurar el comando
+            MySqlConnection Conn = objPer.openConnection();
+            if (Conn == null || Conn.State != ConnectionState.Open)
             {
-                // Abrir la conexión
-                MySqlConnection connection = objPer.OpenConnection();
-
-                // Asegúrate de que la conexión esté abierta antes de crear el comando
-                if (connection.State == ConnectionState.Open)
-                {
-                    using (MySqlCommand objSelectCmd = new MySqlCommand("procSelectCandidatos", connection))
-                    {
-                        objSelectCmd.CommandType = CommandType.StoredProcedure;
-
-                        // Usar un adaptador para llenar el DataSet
-                        using (MySqlDataAdapter objAdapter = new MySqlDataAdapter(objSelectCmd))
-                        {
-                            objAdapter.Fill(objData);  // Cargar los datos en el DataSet
-                        }
-                    }
-                }
-                else
-                {
-                    Console.WriteLine("No se pudo abrir la conexión.");
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Error al obtener los candidatos: " + ex.Message);
-            }
-            finally
-            {
-                objPer.closeConnection();  // Asegúrate de cerrar la conexión
+                throw new InvalidOperationException("No se pudo establecer una conexión a la base de datos.");
             }
 
-            return objData;
+            // Comando SQL para ejecutar el procedimiento almacenado
+            MySqlCommand objSelectCmd = new MySqlCommand
+            {
+                Connection = Conn, // Asignar la conexión correctamente
+                CommandText = "procSelectCandidatos",   // Nombre del procedimiento almacenado
+                CommandType = CommandType.StoredProcedure // Definir que es un procedimiento almacenado
+            };
+
+            objAdapter.SelectCommand = objSelectCmd;
+            objAdapter.Fill(objData); // Llenar el DataSet con los datos
+
+            objPer.closeConnection(Conn); // Cerrar la conexión después de ejecutar
+            return objData; // Retornar los datos
         }
 
-        // Método para guardar un nuevo candidato.
+        // Método para guardar un nuevo candidato en la base de datos.
         public bool saveCandidato(string _nombre, string _apellido, string _partido, string _fechaNacimiento, string _propuesta)
         {
             bool executed = false;
+            int rowsAffected;
+
+            // Abrir la conexión antes de configurar el comando
+            MySqlConnection connection = objPer.openConnection();
+            if (connection == null || connection.State != ConnectionState.Open)
+            {
+                throw new InvalidOperationException("No se pudo establecer una conexión a la base de datos.");
+            }
+
+            MySqlCommand objCommand = new MySqlCommand
+            {
+                Connection = connection,
+                CommandText = "procInsertCandidato", // Nombre del procedimiento almacenado
+                CommandType = CommandType.StoredProcedure // Definir que es un procedimiento almacenado
+            };
+
+            // Agregar parámetros al procedimiento almacenado
+            objCommand.Parameters.Add("p_nombre", MySqlDbType.VarString).Value = _nombre;
+            objCommand.Parameters.Add("p_apellido", MySqlDbType.VarString).Value = _apellido;
+            objCommand.Parameters.Add("p_partido", MySqlDbType.VarString).Value = _partido;
+            objCommand.Parameters.Add("p_fecha_nacimiento", MySqlDbType.VarString).Value = _fechaNacimiento;
+            objCommand.Parameters.Add("p_propuesta", MySqlDbType.Text).Value = _propuesta;
 
             try
             {
-                MySqlConnection connection = objPer.OpenConnection();
-
-                using (MySqlCommand objSelectCmd = new MySqlCommand("procInsertCandidato", connection))
+                rowsAffected = objCommand.ExecuteNonQuery(); // Ejecutar el comando
+                if (rowsAffected == 1) // Si la operación fue exitosa
                 {
-                    objSelectCmd.CommandType = CommandType.StoredProcedure;
-
-                    // Se agregan parámetros al comando para pasar los valores del candidato.
-                    objSelectCmd.Parameters.Add("p_nombre", MySqlDbType.VarString).Value = _nombre;
-                    objSelectCmd.Parameters.Add("p_apellido", MySqlDbType.VarString).Value = _apellido;
-                    objSelectCmd.Parameters.Add("p_partido", MySqlDbType.VarString).Value = _partido;
-                    objSelectCmd.Parameters.Add("p_fecha_nacimiento", MySqlDbType.VarString).Value = _fechaNacimiento;
-                    objSelectCmd.Parameters.Add("p_propuesta", MySqlDbType.Text).Value = _propuesta;
-
-                    int row = objSelectCmd.ExecuteNonQuery();
-                    if (row == 1)
-                    {
-                        executed = true;
-                    }
+                    executed = true;
                 }
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Error al guardar el candidato: " + ex.Message);
-            }
-            finally
-            {
-                objPer.closeConnection();
+                Console.WriteLine($"Error al guardar el candidato: {ex.Message}"); // Manejo de errores
             }
 
-            return executed;
+            objPer.closeConnection(connection); // Cerrar la conexión
+            return executed; // Retornar el resultado
         }
 
         // Método para actualizar un candidato existente.
         public bool updateCandidato(int _id, string _nombre, string _apellido, string _partido, string _fechaNacimiento, string _propuesta)
         {
             bool executed = false;
+            int rowsAffected;
+
+            // Abrir la conexión antes de configurar el comando
+            MySqlConnection connection = objPer.openConnection();
+            if (connection == null || connection.State != ConnectionState.Open)
+            {
+                throw new InvalidOperationException("No se pudo establecer una conexión a la base de datos.");
+            }
+
+            MySqlCommand objCommand = new MySqlCommand
+            {
+                Connection = connection,
+                CommandText = "procUpdateCandidato", // Nombre del procedimiento almacenado
+                CommandType = CommandType.StoredProcedure // Definir que es un procedimiento almacenado
+            };
+
+            // Agregar parámetros para el procedimiento almacenado
+            objCommand.Parameters.Add("p_id", MySqlDbType.Int32).Value = _id;
+            objCommand.Parameters.Add("p_nombre", MySqlDbType.VarString).Value = _nombre;
+            objCommand.Parameters.Add("p_apellido", MySqlDbType.VarString).Value = _apellido;
+            objCommand.Parameters.Add("p_partido", MySqlDbType.VarString).Value = _partido;
+            objCommand.Parameters.Add("p_fecha_nacimiento", MySqlDbType.VarString).Value = _fechaNacimiento;
+            objCommand.Parameters.Add("p_propuesta", MySqlDbType.Text).Value = _propuesta;
 
             try
             {
-                MySqlConnection connection = objPer.OpenConnection();
-
-                using (MySqlCommand objSelectCmd = new MySqlCommand("procUpdateCandidato", connection))
+                rowsAffected = objCommand.ExecuteNonQuery(); // Ejecutar el comando
+                if (rowsAffected == 1) // Si la operación fue exitosa
                 {
-                    objSelectCmd.CommandType = CommandType.StoredProcedure;
-
-                    // Se agregan parámetros al comando para pasar los valores del candidato.
-                    objSelectCmd.Parameters.Add("p_id", MySqlDbType.Int32).Value = _id;
-                    objSelectCmd.Parameters.Add("p_nombre", MySqlDbType.VarString).Value = _nombre;
-                    objSelectCmd.Parameters.Add("p_apellido", MySqlDbType.VarString).Value = _apellido;
-                    objSelectCmd.Parameters.Add("p_partido", MySqlDbType.VarString).Value = _partido;
-                    objSelectCmd.Parameters.Add("p_fecha_nacimiento", MySqlDbType.VarString).Value = _fechaNacimiento;
-                    objSelectCmd.Parameters.Add("p_propuesta", MySqlDbType.Text).Value = _propuesta;
-
-                    int row = objSelectCmd.ExecuteNonQuery();
-                    if (row == 1)
-                    {
-                        executed = true;
-                    }
+                    executed = true;
                 }
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Error al actualizar el candidato: " + ex.Message);
-            }
-            finally
-            {
-                objPer.closeConnection();
+                Console.WriteLine($"Error al actualizar el candidato: {ex.Message}"); // Manejo de errores
             }
 
-            return executed;
+            objPer.closeConnection(connection); // Cerrar la conexión
+            return executed; // Retornar el resultado
         }
 
         // Método para borrar un candidato.
         public bool deleteCandidato(int _idCandidato)
         {
             bool executed = false;
+            int rowsAffected;
+
+            // Abrir la conexión antes de configurar el comando
+            MySqlConnection connection = objPer.openConnection();
+            if (connection == null || connection.State != ConnectionState.Open)
+            {
+                throw new InvalidOperationException("No se pudo establecer una conexión a la base de datos.");
+            }
+
+            MySqlCommand objCommand = new MySqlCommand
+            {
+                Connection = connection,
+                CommandText = "procDeleteCandidato", // Nombre del procedimiento almacenado
+                CommandType = CommandType.StoredProcedure // Definir que es un procedimiento almacenado
+            };
+
+            // Agregar parámetro para el procedimiento almacenado
+            objCommand.Parameters.Add("p_id", MySqlDbType.Int32).Value = _idCandidato;
 
             try
             {
-                MySqlConnection connection = objPer.OpenConnection();
-
-                using (MySqlCommand objSelectCmd = new MySqlCommand("procDeleteCandidato", connection))
+                rowsAffected = objCommand.ExecuteNonQuery(); // Ejecutar el comando
+                if (rowsAffected == 1) // Si la operación fue exitosa
                 {
-                    objSelectCmd.CommandType = CommandType.StoredProcedure;
-                    objSelectCmd.Parameters.Add("p_id", MySqlDbType.Int32).Value = _idCandidato;
-
-                    int row = objSelectCmd.ExecuteNonQuery();
-                    if (row == 1)
-                    {
-                        executed = true;
-                    }
+                    executed = true;
                 }
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Error al eliminar el candidato: " + ex.Message);
-            }
-            finally
-            {
-                objPer.closeConnection();
+                Console.WriteLine($"Error al eliminar el candidato: {ex.Message}"); // Manejo de errores
             }
 
-            return executed;
+            objPer.closeConnection(connection); // Cerrar la conexión
+            return executed; // Retornar el resultado
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Partidos y Candidatos" Language="C#" MasterPageFile="~/Main.Master" AutoEventWireup="true" CodeBehind="WFPartidos.aspx.cs" Inherits="Presentation.WFPartidos" %>
+﻿<%@ Page Title="Partidos y Candidatos" Language="C#" MasterPageFile="~/Main.Master" AutoEventWireup="true" CodeBehind="AWPartidos.aspx.cs" Inherits="Presentation.AWPartidos" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">

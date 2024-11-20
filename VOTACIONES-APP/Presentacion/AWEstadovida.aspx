@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Gestión Estado de Vida" Language="C#" MasterPageFile="~/Main.Master" AutoEventWireup="true" CodeBehind="WFEstadoVida.aspx.cs" Inherits="Presentation.WFEstadoVida" %>
+﻿<%@ Page Title="Gestión Estado de Vida" Language="C#" MasterPageFile="~/Main.Master" AutoEventWireup="true" CodeBehind="AWEstadovida.aspx.cs" Inherits="Presentation.AWEstado_Vida" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">

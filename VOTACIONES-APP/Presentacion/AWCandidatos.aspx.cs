@@ -1,159 +1,153 @@
-using Logic;
 using System;
 using System.Data;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Logic;  // Asegúrate de que esta referencia sea la correcta para tu capa lógica
 
 namespace Presentation
 {
-    public partial class WFCandidatos : System.Web.UI.Page
+    public partial class AWCandidatos : System.Web.UI.Page
     {
-        // Creamos una instancia de la clase CandidatosLog para interactuar con la capa de negocio
-        CandidatosLog objCanLog = new CandidatosLog();
-
+        // Instancia de la capa lógica para los candidatos
+        CandidatosLog objCand = new CandidatosLog();
         private int _idCandidato;
         private string _nombre, _apellido, _partido, _fechaNacimiento, _propuesta;
         private bool executed = false;
 
-        // Cargar la página por primera vez
+        // Cargar la página y mostrar los candidatos
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!Page.IsPostBack)
+            if (!IsPostBack)
             {
-                showCandidatos(); // Cargar todos los candidatos al inicio
+                showCandidatos(); // Cargar todos los candidatos en el GridView
             }
         }
 
-        // Método para mostrar los candidatos en el GridView
+        // Método para mostrar todos los candidatos en el GridView
         private void showCandidatos()
         {
             try
             {
-                // Obtenemos los candidatos desde la capa de negocio
-                DataSet ds = objCanLog.showCandidatos();
+                // Llamada al método de la capa lógica
+                DataSet ds = objCand.showCandidatos();
 
                 if (ds != null && ds.Tables.Count > 0)
                 {
-                    // Si hay datos, los asignamos al GridView
-                    GVClientes.DataSource = ds.Tables[0];  // Usamos la primera tabla del DataSet
-                    GVClientes.DataBind();
+                    // Asignamos los datos al GridView
+                    GVCandidatos.DataSource = ds.Tables[0];
+                    GVCandidatos.DataBind();
                 }
                 else
                 {
-                    // Si no hay datos, mostramos un mensaje
-                    LblMsj.Text = "No se encontraron candidatos.";
+                    LblMensaje.Text = "No se encontraron candidatos.";
                 }
             }
             catch (Exception ex)
             {
-                // Capturamos cualquier error y lo mostramos
-                LblMsj.Text = "Error al cargar los candidatos: " + ex.Message;
+                // Si ocurre un error, lo mostramos
+                LblMensaje.Text = "Error al cargar los candidatos: " + ex.Message;
             }
         }
 
-        // Método para limpiar los campos de entrada
+        // Limpiar los campos de texto y el campo oculto
         private void clear()
         {
-            // Limpiar los campos del formulario
-            can_nombre.Text = "";
-            can_apellido.Text = "";
-            can_partido.Text = "";
-            can_fecha_nacimiento.Text = "";
-            can_propuesta.Text = "";
-
-            // Ocultar el botón de actualización después de guardar
-            btnActualizar.Visible = false;
+            txtNombre.Text = "";
+            txtApellido.Text = "";
+            txtPartido.Text = "";
+            txtFechaNacimiento.Text = "";
+            txtPropuesta.Text = "";
+            HFCandidatoId.Value = "";
         }
 
         // Evento para guardar un nuevo candidato
-        protected void btnGuardar_Click(object sender, EventArgs e)
+        protected void BtnSave_Click(object sender, EventArgs e)
         {
-            // Obtener datos de los campos de texto
-            _nombre = can_nombre.Text;
-            _apellido = can_apellido.Text;
-            _partido = can_partido.Text;
-            _fechaNacimiento = can_fecha_nacimiento.Text;
-            _propuesta = can_propuesta.Text;
+            _nombre = txtNombre.Text;
+            _apellido = txtApellido.Text;
+            _partido = txtPartido.Text;
+            _fechaNacimiento = txtFechaNacimiento.Text;
+            _propuesta = txtPropuesta.Text;
 
-            // Llamar al método de la capa de negocio para guardar el candidato
-            executed = objCanLog.saveCandidato(_nombre, _apellido, _partido, _fechaNacimiento, _propuesta);
+            // Llamada al método para guardar el candidato
+            executed = objCand.saveCandidato(_nombre, _apellido, _partido, _fechaNacimiento, _propuesta);
 
             if (executed)
             {
-                LblMsj.Text = "El candidato se guardó exitosamente!";
+                LblMensaje.Text = "Candidato guardado exitosamente!";
                 clear(); // Limpiar los campos
-                showCandidatos(); // Actualizar la lista de candidatos
+                showCandidatos(); // Actualizar el GridView
             }
             else
             {
-                LblMsj.Text = "Error al guardar el candidato!";
+                LblMensaje.Text = "Error al guardar el candidato!";
             }
         }
 
-        // Evento para actualizar un candidato
-        protected void btnActualizar_Click(object sender, EventArgs e)
+        // Evento para actualizar un candidato existente
+        protected void BtnUpdate_Click(object sender, EventArgs e)
         {
-            // Obtener los datos del candidato para la actualización
-            _idCandidato = Convert.ToInt32(HFIdCandidato.Value); // Obtener el ID del candidato a actualizar
-            _nombre = can_nombre.Text;
-            _apellido = can_apellido.Text;
-            _partido = can_partido.Text;
-            _fechaNacimiento = can_fecha_nacimiento.Text;
-            _propuesta = can_propuesta.Text;
+            _idCandidato = Convert.ToInt32(HFCandidatoId.Value);
+            _nombre = txtNombre.Text;
+            _apellido = txtApellido.Text;
+            _partido = txtPartido.Text;
+            _fechaNacimiento = txtFechaNacimiento.Text;
+            _propuesta = txtPropuesta.Text;
 
-            // Llamar al método de la capa de negocio para actualizar el candidato
-            executed = objCanLog.updateCandidato(_idCandidato, _nombre, _apellido, _partido, _fechaNacimiento, _propuesta);
+            // Llamada al método para actualizar el candidato
+            executed = objCand.updateCandidato(_idCandidato, _nombre, _apellido, _partido, _fechaNacimiento, _propuesta);
 
             if (executed)
             {
-                LblMsj.Text = "El candidato se actualizó exitosamente!";
+                LblMensaje.Text = "Candidato actualizado exitosamente!";
                 clear(); // Limpiar los campos
-                showCandidatos(); // Actualizar la lista de candidatos
+                showCandidatos(); // Actualizar el GridView
             }
             else
             {
-                LblMsj.Text = "Error al actualizar el candidato!";
+                LblMensaje.Text = "Error al actualizar el candidato!";
             }
         }
 
-        // Evento para seleccionar una fila del GridView y cargar sus datos en los campos
-        protected void GVClientes_SelectedIndexChanged(object sender, EventArgs e)
+        // Evento cuando se selecciona un candidato desde el GridView
+        protected void GVCandidatos_SelectedIndexChanged(object sender, EventArgs e)
         {
-            // Asignar el ID del candidato a un campo oculto (HiddenField)
-            HFIdCandidato.Value = GVClientes.SelectedRow.Cells[0].Text;
+            // Obtener los valores de la fila seleccionada y asignarlos a los campos
+            GridViewRow row = GVCandidatos.SelectedRow;
+            HFCandidatoId.Value = row.Cells[0].Text; // ID del candidato
+            txtNombre.Text = row.Cells[1].Text; // Nombre
+            txtApellido.Text = row.Cells[2].Text; // Apellido
+            txtPartido.Text = row.Cells[3].Text; // Partido
+            txtFechaNacimiento.Text = row.Cells[4].Text; // Fecha de Nacimiento
+            txtPropuesta.Text = row.Cells[5].Text; // Propuesta
 
-            // Asignar los valores de las celdas seleccionadas a los campos de texto
-            can_nombre.Text = GVClientes.SelectedRow.Cells[1].Text;
-            can_apellido.Text = GVClientes.SelectedRow.Cells[2].Text;
-            can_partido.Text = GVClientes.SelectedRow.Cells[3].Text;
-            can_fecha_nacimiento.Text = GVClientes.SelectedRow.Cells[4].Text;
-            can_propuesta.Text = GVClientes.SelectedRow.Cells[5].Text;
-
-            // Mostrar el botón de actualización cuando se selecciona un candidato
+            // Mostrar el botón de "Actualizar" y ocultar el de "Guardar"
+            btnGuardar.Visible = false;
             btnActualizar.Visible = true;
         }
 
-        // Evento para eliminar un candidato
-        protected void GVClientes_RowCommand(object sender, GridViewCommandEventArgs e)
+        // Evento para eliminar un candidato desde el GridView
+        protected void GVCandidatos_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             if (e.CommandName == "Delete")
             {
                 int rowIndex = Convert.ToInt32(e.CommandArgument);
-                _idCandidato = Convert.ToInt32(GVClientes.DataKeys[rowIndex].Value);
+                _idCandidato = Convert.ToInt32(GVCandidatos.DataKeys[rowIndex].Value);
 
-                // Llamar al método de la capa de negocio para eliminar el candidato
-                executed = objCanLog.deleteCandidato(_idCandidato);
+                // Llamada al método para eliminar el candidato
+                executed = objCand.deleteCandidato(_idCandidato);
 
                 if (executed)
                 {
-                    LblMsj.Text = "Candidato eliminado exitosamente!";
-                    showCandidatos(); // Actualizar la lista de candidatos
+                    LblMensaje.Text = "Candidato eliminado exitosamente!";
+                    showCandidatos(); // Actualizar el GridView
                 }
                 else
                 {
-                    LblMsj.Text = "Error al eliminar el candidato!";
+                    LblMensaje.Text = "Error al eliminar el candidato!";
                 }
             }
         }
     }
 }
+

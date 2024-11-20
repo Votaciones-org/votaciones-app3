@@ -11,7 +11,7 @@ namespace Presentation
 {
 
 
-    public partial class WFUsuarios
+    public partial class AWUsuarios
     {
 
         /// <summary>

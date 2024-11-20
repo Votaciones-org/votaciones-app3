@@ -11,7 +11,7 @@ namespace Presentation
 {
 
 
-    public partial class WFPartidos
+    public partial class AWPartidos
     {
 
         /// <summary>
