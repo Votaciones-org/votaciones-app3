@@ -24,15 +24,6 @@ namespace Presentacion
         protected global::System.Web.UI.WebControls.Label LblId;
 
         /// <summary>
-        /// Control LblNombre.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LblNombre;
-
-        /// <summary>
         /// Control TBNombre.
         /// </summary>
         /// <remarks>
@@ -40,15 +31,6 @@ namespace Presentacion
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox TBNombre;
-
-        /// <summary>
-        /// Control LblApellido.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LblApellido;
 
         /// <summary>
         /// Control TBApellido.
@@ -60,15 +42,6 @@ namespace Presentacion
         protected global::System.Web.UI.WebControls.TextBox TBApellido;
 
         /// <summary>
-        /// Control LblCedula.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LblCedula;
-
-        /// <summary>
         /// Control TBCedula.
         /// </summary>
         /// <remarks>
@@ -76,15 +49,6 @@ namespace Presentacion
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox TBCedula;
-
-        /// <summary>
-        /// Control LblOpcion.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LblOpcion;
 
         /// <summary>
         /// Control TBOpcion.
@@ -112,6 +76,15 @@ namespace Presentacion
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button BtnUpdate;
+
+        /// <summary>
+        /// Control BtnClear.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button BtnClear;
 
         /// <summary>
         /// Control LblMsj.
