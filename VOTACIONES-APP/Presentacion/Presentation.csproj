@@ -123,8 +123,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="AWCandidatos_eliminados.aspx" />
-    <Content Include="AWEstadovida.aspx" />
+    <Content Include="AWCandidatosEliminados.aspx" />
+    <Content Include="AWEstadoVida.aspx" />
     <Content Include="AWPartidos.aspx" />
     <Content Include="AWUsuarios.aspx" />
     <Content Include="AWUsuariosAFK.aspx" />
@@ -157,19 +157,19 @@
     <Content Include="AWCandidatos.aspx" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AWCandidatos_eliminados.aspx.cs">
-      <DependentUpon>AWCandidatos_eliminados.aspx</DependentUpon>
+    <Compile Include="AWCandidatosEliminados.aspx.cs">
+      <DependentUpon>AWCandidatosEliminados.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="AWCandidatos_eliminados.aspx.designer.cs">
-      <DependentUpon>AWCandidatos_eliminados.aspx</DependentUpon>
+    <Compile Include="AWCandidatosEliminados.aspx.designer.cs">
+      <DependentUpon>AWCandidatosEliminados.aspx</DependentUpon>
     </Compile>
-    <Compile Include="AWEstadovida.aspx.cs">
-      <DependentUpon>AWEstadovida.aspx</DependentUpon>
+    <Compile Include="AWEstadoVida.aspx.cs">
+      <DependentUpon>AWEstadoVida.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="AWEstadovida.aspx.designer.cs">
-      <DependentUpon>AWEstadovida.aspx</DependentUpon>
+    <Compile Include="AWEstadoVida.aspx.designer.cs">
+      <DependentUpon>AWEstadoVida.aspx</DependentUpon>
     </Compile>
     <Compile Include="AWPartidos.aspx.cs">
       <DependentUpon>AWPartidos.aspx</DependentUpon>
