@@ -7,185 +7,147 @@ namespace Data
 {
     public class PartidosDat
     {
-        private readonly string _connectionString = "tu_cadena_de_conexion"; // Reemplázala con la cadena de conexión.
+        private Persistence objPer = new Persistence(); // Instancia de Persistence para manejar la conexión
 
-        // Método para obtener todos los partidos con sus candidatos
-        public DataTable GetPartidosWithCandidatos()
+        // Método para mostrar los partidos desde la base de datos.
+        public DataSet showPartidos()
         {
-            DataTable dataTable = new DataTable();
-            string query = @"
-                SELECT 
-                    p.partido_id, 
-                    p.partido_nombre, 
-                    p.partido_descripcion, 
-                    c.candidato_id, 
-                    c.candidato_nombre, 
-                    c.candidato_apellido, 
-                    c.candidato_fecha_nacimiento, 
-                    c.candidato_propuesta
-                FROM 
-                    Partidos p
-                INNER JOIN 
-                    Candidatos c ON p.partido_id = c.partido_id";
+            MySqlDataAdapter objAdapter = new MySqlDataAdapter();
+            DataSet objData = new DataSet();
 
-            using (SqlConnection conn = new SqlConnection(_connectionString))
+            MySqlConnection Conn = objPer.openConnection();
+            if (Conn == null || Conn.State != ConnectionState.Open)
             {
-                try
-                {
-                    SqlDataAdapter adapter = new SqlDataAdapter(query, conn);
-                    adapter.Fill(dataTable);
-                }
-                catch (Exception ex)
-                {
-                    // Log or handle the error as needed
-                    throw new Exception("Error al obtener partidos con candidatos: " + ex.Message);
-                }
+                throw new InvalidOperationException("No se pudo establecer una conexión a la base de datos.");
             }
 
-            return dataTable;
+            MySqlCommand objSelectCmd = new MySqlCommand
+            {
+                Connection = Conn,
+                CommandText = "procSelectPartidos", // Nombre del procedimiento almacenado
+                CommandType = CommandType.StoredProcedure
+            };
+
+            objAdapter.SelectCommand = objSelectCmd;
+            objAdapter.Fill(objData);
+
+            objPer.closeConnection(Conn);
+            return objData;
         }
 
-        // Método para insertar un nuevo partido
-        public int InsertPartido(string partidoName, string partidoDescription, SqlTransaction transaction)
+        // Método para guardar un nuevo partido en la base de datos.
+        public bool savePartido(string partidoNombre, string partidoDescripcion, int candidatoId, int eliminadoId)
         {
-            string query = @"
-                INSERT INTO Partidos (partido_nombre, partido_descripcion) 
-                VALUES (@partidoName, @partidoDescription); 
-                SELECT SCOPE_IDENTITY();"; // Obtiene el ID del nuevo partido
+            bool executed = false;
+            int rowsAffected;
 
-            using (SqlCommand cmd = new SqlCommand(query, transaction.Connection, transaction))
+            MySqlConnection connection = objPer.openConnection();
+            if (connection == null || connection.State != ConnectionState.Open)
             {
-                cmd.Parameters.AddWithValue("@partidoName", partidoName);
-                cmd.Parameters.AddWithValue("@partidoDescription", partidoDescription);
-
-                try
-                {
-                    return Convert.ToInt32(cmd.ExecuteScalar());
-                }
-                catch (Exception ex)
-                {
-                    throw new Exception("Error al insertar el partido: " + ex.Message);
-                }
+                throw new InvalidOperationException("No se pudo establecer una conexión a la base de datos.");
             }
+
+            MySqlCommand objCommand = new MySqlCommand
+            {
+                Connection = connection,
+                CommandText = "procInsertPartido", // Nombre del procedimiento almacenado
+                CommandType = CommandType.StoredProcedure
+            };
+
+            // Agregar parámetros al procedimiento almacenado
+            objCommand.Parameters.Add("p_partido_nombre", MySqlDbType.VarString).Value = partidoNombre;
+            objCommand.Parameters.Add("p_partido_descripcion", MySqlDbType.VarString).Value = partidoDescripcion;
+            objCommand.Parameters.Add("p_candidato_id", MySqlDbType.Int32).Value = candidatoId; // Llave foránea de Candidato
+            objCommand.Parameters.Add("p_eliminado_id", MySqlDbType.Int32).Value = eliminadoId; // Llave foránea de Candidatos Eliminados
+
+            try
+            {
+                rowsAffected = objCommand.ExecuteNonQuery();
+                executed = rowsAffected == 1;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error al guardar el partido: {ex.Message}");
+            }
+
+            objPer.closeConnection(connection);
+            return executed;
         }
 
-        // Método para insertar un nuevo candidato
-        public void InsertCandidato(int partidoId, string candidatoName, string candidatoSurname, DateTime candidatoBirthDate, string candidatoProposal, SqlTransaction transaction)
+        // Método para actualizar un partido existente.
+        public bool updatePartido(int partidoId, string partidoNombre, string partidoDescripcion, int candidatoId, int eliminadoId)
         {
-            string query = @"
-                INSERT INTO Candidatos (partido_id, candidato_nombre, candidato_apellido, candidato_fecha_nacimiento, candidato_propuesta) 
-                VALUES (@partidoId, @candidatoName, @candidatoSurname, @candidatoBirthDate, @candidatoProposal);";
+            bool executed = false;
+            int rowsAffected;
 
-            using (SqlCommand cmd = new SqlCommand(query, transaction.Connection, transaction))
+            MySqlConnection connection = objPer.openConnection();
+            if (connection == null || connection.State != ConnectionState.Open)
             {
-                cmd.Parameters.AddWithValue("@partidoId", partidoId);
-                cmd.Parameters.AddWithValue("@candidatoName", candidatoName);
-                cmd.Parameters.AddWithValue("@candidatoSurname", candidatoSurname);
-                cmd.Parameters.AddWithValue("@candidatoBirthDate", candidatoBirthDate);
-                cmd.Parameters.AddWithValue("@candidatoProposal", candidatoProposal);
-
-                try
-                {
-                    cmd.ExecuteNonQuery();
-                }
-                catch (Exception ex)
-                {
-                    throw new Exception("Error al insertar el candidato: " + ex.Message);
-                }
+                throw new InvalidOperationException("No se pudo establecer una conexión a la base de datos.");
             }
+
+            MySqlCommand objCommand = new MySqlCommand
+            {
+                Connection = connection,
+                CommandText = "procUpdatePartido", // Nombre del procedimiento almacenado
+                CommandType = CommandType.StoredProcedure
+            };
+
+            // Agregar parámetros al procedimiento almacenado
+            objCommand.Parameters.Add("p_partido_id", MySqlDbType.Int32).Value = partidoId; // Llave primaria
+            objCommand.Parameters.Add("p_partido_nombre", MySqlDbType.VarString).Value = partidoNombre;
+            objCommand.Parameters.Add("p_partido_descripcion", MySqlDbType.VarString).Value = partidoDescripcion;
+            objCommand.Parameters.Add("p_candidato_id", MySqlDbType.Int32).Value = candidatoId; // Llave foránea de Candidato
+            objCommand.Parameters.Add("p_eliminado_id", MySqlDbType.Int32).Value = eliminadoId; // Llave foránea de Candidatos Eliminados
+
+            try
+            {
+                rowsAffected = objCommand.ExecuteNonQuery();
+                executed = rowsAffected == 1;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error al actualizar el partido: {ex.Message}");
+            }
+
+            objPer.closeConnection(connection);
+            return executed;
         }
 
-        // Método para actualizar un partido
-        public void UpdatePartido(int partidoId, string partidoName, string partidoDescription, SqlTransaction transaction)
+        // Método para borrar un partido.
+        public bool deletePartido(int partidoId)
         {
-            string query = @"
-                UPDATE Partidos 
-                SET partido_nombre = @partidoName, partido_descripcion = @partidoDescription
-                WHERE partido_id = @partidoId;";
+            bool executed = false;
+            int rowsAffected;
 
-            using (SqlCommand cmd = new SqlCommand(query, transaction.Connection, transaction))
+            MySqlConnection connection = objPer.openConnection();
+            if (connection == null || connection.State != ConnectionState.Open)
             {
-                cmd.Parameters.AddWithValue("@partidoName", partidoName);
-                cmd.Parameters.AddWithValue("@partidoDescription", partidoDescription);
-                cmd.Parameters.AddWithValue("@partidoId", partidoId);
-
-                try
-                {
-                    cmd.ExecuteNonQuery();
-                }
-                catch (Exception ex)
-                {
-                    throw new Exception("Error al actualizar el partido: " + ex.Message);
-                }
+                throw new InvalidOperationException("No se pudo establecer una conexión a la base de datos.");
             }
-        }
 
-        // Método para actualizar un candidato
-        public void UpdateCandidato(int candidatoId, string candidatoName, string candidatoSurname, DateTime candidatoBirthDate, string candidatoProposal, SqlTransaction transaction)
-        {
-            string query = @"
-                UPDATE Candidatos 
-                SET candidato_nombre = @candidatoName, candidato_apellido = @candidatoSurname, 
-                    candidato_fecha_nacimiento = @candidatoBirthDate, candidato_propuesta = @candidatoProposal
-                WHERE candidato_id = @candidatoId;";
-
-            using (SqlCommand cmd = new SqlCommand(query, transaction.Connection, transaction))
+            MySqlCommand objCommand = new MySqlCommand
             {
-                cmd.Parameters.AddWithValue("@candidatoName", candidatoName);
-                cmd.Parameters.AddWithValue("@candidatoSurname", candidatoSurname);
-                cmd.Parameters.AddWithValue("@candidatoBirthDate", candidatoBirthDate);
-                cmd.Parameters.AddWithValue("@candidatoProposal", candidatoProposal);
-                cmd.Parameters.AddWithValue("@candidatoId", candidatoId);
+                Connection = connection,
+                CommandText = "procDeletePartido", // Nombre del procedimiento almacenado
+                CommandType = CommandType.StoredProcedure
+            };
 
-                try
-                {
-                    cmd.ExecuteNonQuery();
-                }
-                catch (Exception ex)
-                {
-                    throw new Exception("Error al actualizar el candidato: " + ex.Message);
-                }
-            }
-        }
+            // Agregar parámetro para el procedimiento almacenado
+            objCommand.Parameters.Add("p_partido_id", MySqlDbType.Int32).Value = partidoId; // Llave primaria
 
-        // Método para eliminar un candidato
-        public void DeleteCandidato(int candidatoId, SqlTransaction transaction)
-        {
-            string query = "DELETE FROM Candidatos WHERE candidato_id = @candidatoId;";
-
-            using (SqlCommand cmd = new SqlCommand(query, transaction.Connection, transaction))
+            try
             {
-                cmd.Parameters.AddWithValue("@candidatoId", candidatoId);
-
-                try
-                {
-                    cmd.ExecuteNonQuery();
-                }
-                catch (Exception ex)
-                {
-                    throw new Exception("Error al eliminar el candidato: " + ex.Message);
-                }
+                rowsAffected = objCommand.ExecuteNonQuery();
+                executed = rowsAffected == 1;
             }
-        }
-
-        // Método para eliminar un partido
-        public void DeletePartido(int partidoId, SqlTransaction transaction)
-        {
-            string query = "DELETE FROM Partidos WHERE partido_id = @partidoId;";
-
-            using (SqlCommand cmd = new SqlCommand(query, transaction.Connection, transaction))
+            catch (Exception ex)
             {
-                cmd.Parameters.AddWithValue("@partidoId", partidoId);
-
-                try
-                {
-                    cmd.ExecuteNonQuery();
-                }
-                catch (Exception ex)
-                {
-                    throw new Exception("Error al eliminar el partido: " + ex.Message);
-                }
+                Console.WriteLine($"Error al eliminar el partido: {ex.Message}");
             }
+
+            objPer.closeConnection(connection);
+            return executed;
         }
     }
 }
