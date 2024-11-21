@@ -43,7 +43,7 @@ namespace Logic
         public bool deleteCandidato(int idCandidato)
         {
 
-            return objCanData.deleteCandidato(idCandidato);  // Llamada correcta
+            return objCanData.DeleteCandidato(idCandidato);  // Llamada correcta
 
         }   
 

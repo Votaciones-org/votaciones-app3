@@ -1,61 +1,41 @@
 ﻿<%@ Page Title="Partidos y Candidatos" Language="C#" MasterPageFile="~/Main.Master" AutoEventWireup="true" CodeBehind="AWPartidos.aspx.cs" Inherits="Presentation.AWPartidos" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <!-- Aquí puedes agregar cualquier contenido que quieras dentro del <head> -->
+    <link rel="stylesheet" href="Content/bootstrap.min.css">
+    <script src="Scripts/bootstrap.min.js"></script>
+    <script src="Scripts/jquery-1.9.1.min.js"></script>    
+
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div>
-        <!-- Formulario para gestión de partidos -->
-        <h3>Gestión de Partidos</h3>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server" class="container">
+    <div class="form-container">
+        <h2>Gestión de Partidos</h2>
+
+        <!-- Oculto para mantener el ID del partido seleccionado -->
         <asp:Label ID="LblPartidoId" runat="server" Text="" Visible="false"></asp:Label>
-        
-        <asp:Label ID="LblNombrePartido" runat="server" Text="Nombre del Partido:"></asp:Label>
+
+        <label for="TBNombrePartido">Nombre del Partido:</label>
         <asp:TextBox ID="TBNombrePartido" runat="server"></asp:TextBox>
-        <br />
 
-        <asp:Label ID="LblDescripcion" runat="server" Text="Descripción:"></asp:Label>
+        <label for="TBDescripcion">Descripción:</label>
         <asp:TextBox ID="TBDescripcion" runat="server" TextMode="MultiLine" Rows="3"></asp:TextBox>
-        <br />
 
-        <asp:Button ID="BtnSavePartido" runat="server" Text="Guardar Partido" OnClick="BtnSavePartido_Click" />
-        <asp:Button ID="BtnUpdatePartido" runat="server" Text="Actualizar Partido" OnClick="BtnUpdatePartido_Click" />
-        <asp:Button ID="BtnDeletePartido" runat="server" Text="Eliminar Partido" OnClick="BtnDeletePartido_Click" />
-        <br />
+        <div class="action-buttons">
+            <asp:Button ID="BtnSavePartido" runat="server" Text="Guardar Partido" CssClass="btn" OnClick="BtnSavePartido_Click" />
+            <asp:Button ID="BtnUpdatePartido" runat="server" Text="Actualizar Partido" CssClass="btn" OnClick="BtnUpdatePartido_Click" />
+            <asp:Button ID="BtnDeletePartido" runat="server" Text="Eliminar Partido" CssClass="btn" OnClick="BtnDeletePartido_Click" />
+        </div>
 
-        <asp:Label ID="LblMsjPartido" runat="server" Text=""></asp:Label>
+        <asp:Label ID="LblMsjPartido" runat="server" CssClass="message"></asp:Label>
     </div>
-    
-    <div>
+
+    <div class="grid-container">
         <asp:GridView ID="GVPartidos" runat="server" CssClass="table" AutoGenerateColumns="False" OnSelectedIndexChanged="GVPartidos_SelectedIndexChanged">
             <Columns>
-                <asp:BoundField DataField="id" HeaderText="ID" />
-                <asp:BoundField DataField="nombrePartido" HeaderText="Nombre del Partido" />
-                <asp:BoundField DataField="descripcion" HeaderText="Descripción" />
+                <asp:BoundField DataField="partido_id" HeaderText="ID" />
+                <asp:BoundField DataField="partido_nombre" HeaderText="Nombre del Partido" />
+                <asp:BoundField DataField="partido_descripcion" HeaderText="Descripción" />
                 <asp:CommandField ShowSelectButton="True" />
             </Columns>
         </asp:GridView>
-    </div>
-    
-    <!-- Formulario para asignación de candidatos a partidos -->
-    <h3>Asignación de Candidatos a Partidos</h3>
-    <div>
-        <asp:Label ID="LblCandidatoId" runat="server" Text="" Visible="false"></asp:Label>
-
-        <asp:Label ID="LblPartidoDDL" runat="server" Text="Seleccione Partido:"></asp:Label>
-        <asp:DropDownList ID="DDLPartido" runat="server"></asp:DropDownList>
-        <br />
-
-        <asp:Label ID="LblNombreCandidato" runat="server" Text="Nombre del Candidato:"></asp:Label>
-        <asp:TextBox ID="TBNombreCandidato" runat="server"></asp:TextBox>
-        <br />
-
-        <asp:Label ID="LblApellidoCandidato" runat="server" Text="Apellido del Candidato:"></asp:Label>
-        <asp:TextBox ID="TBApellidoCandidato" runat="server"></asp:TextBox>
-        <br />
-
-        <asp:Button ID="BtnSaveCandidato" runat="server" Text="Guardar Candidato" OnClick="BtnSaveCandidato_Click" />
-        <asp:Button ID="BtnUpdateCandidato" runat="server" Text="Actualizar Candidato" OnClick="BtnUpdateCandidato_Click" />
-        <asp:Button ID="BtnDeleteCandidato" runat="server" Text="Eliminar Candidato" OnClick="BtnDeleteCandidato_Click" />
-        <br />
-
-        <asp:Label ID="LblMsjCandidato" runat="server" Text=""></asp:Label>
     </div>
 </asp:Content>

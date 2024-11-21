@@ -3,7 +3,8 @@ using System.Data;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Logic;
-using Logic.Logic;  // Asegúrate de que esta referencia sea la correcta para tu capa lógica
+
+
 
 namespace Presentation
 {
@@ -11,7 +12,7 @@ namespace Presentation
     {
         // Instancia de la capa lógica para los candidatos eliminados
         CandidatosEliminadosLog objCand = new CandidatosEliminadosLog();
-        private int _id;
+        
 
         // Cargar la página y mostrar los candidatos eliminados
         protected void Page_Load(object sender, EventArgs e)

@@ -1,41 +1,40 @@
-﻿using Data;
+﻿using MySql.Data.MySqlClient;
 using System;
-using System.Collections.Generic;
-using System.Data.SqlClient;
 using System.Data;
-using System.Linq;
-using System.Web;
+using System.Data.SqlClient;
 
-namespace Logic
+namespace Data
 {
     public class PartidosLog
     {
-        PartidosDat _dat = new PartidosDat();
+        PartidosDat objPar = new PartidosDat(); // Instancia de Persistence para manejar la conexión
 
-        public DataTable GetPartidosWithCandidatos()
+        // Método para mostrar los partidos desde la base de datos.
+        public DataSet showPartidos()
         {
 
-            return _dat.GetPartidosWithCandidatos();
+            return objPar.showPartidos();
         }
 
-        public bool InsertPartidoCandidato(string partidoName, string partidoDescription, string candidatoName, string candidatoSurname, DateTime candidatoBirthDate, string candidatoProposal)
+        // Método para guardar un nuevo partido en la base de datos.
+        public bool savePartido(string partidoNombre, string partidoDescripcion, int candidatoId, int eliminadoId)
         {
 
-                return _dat.InsertPartidoCandidato(partidoName, partidoDescription, candidatoName, candidatoSurname, candidatoBirthDate, candidatoProposal);
-           
+            return objPar.savePartido(partidoNombre, partidoDescripcion, candidatoId, eliminadoId);
         }
 
-        public bool UpdatePartidoCandidato(int partidoId, string partidoName, string partidoDescription, int candidatoId, string candidatoName, string candidatoSurname, DateTime candidatoBirthDate, string candidatoProposal)
+        // Método para actualizar un partido existente.
+        public bool updatePartido(int partidoId, string partidoNombre, string partidoDescripcion, int candidatoId, int eliminadoId)
         {
 
-                return _dat.UpdatePartidoCandidato(partidoId, partidoName, partidoDescription, candidatoId, candidatoName, candidatoSurname, candidatoBirthDate, candidatoProposal);
+            return objPar.updatePartido(partidoId, partidoNombre, partidoDescripcion, candidatoId, eliminadoId);
+                
         }
 
-        public bool DeletePartidoCandidato(int partidoId, int candidatoId)
+        // Método para borrar un partido.
+        public bool deletePartido(int partidoId)
         {
-
-                return _dat.DeletePartidoCandidato(partidoId, candidatoId);
-            }
+            return objPar.deletePartido(partidoId);
         }
     }
-
+}
